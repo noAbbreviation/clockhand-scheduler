@@ -1,5 +1,10 @@
-.main-canvas {
+.main-canvas,
+.submenu-canvas {
     width: 500px;
     height: 500px;
+    background-color: antiquewhite;
+}
+
+.submenu-canvas {
     background-color: gray;
 }
