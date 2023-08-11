@@ -18,15 +18,44 @@
     <div class="content">
       <div class="menu">
         <ul>
-          <li> <button id="slice-add">Add a slice</button> </li>
-          <li> <button id="slice-edit">Edit a slice</button> </li>
-          <li> <button id="slice-remove">Remove a slice</button> </li>
+          <li> <button id="slice-add-button" onclick="document.getElementById('slice-add').showModal()">Add a slice</button> </li>
+          <li> <button id="slice-edit-button">Edit a slice</button> </li>
+          <li> <button id="slice-remove-button">Remove a slice</button> </li>
         </ul>
       </div>
 
       <div class="main-canvas">
         <canvas id="main-canvas"></canvas>
       </div>
+    </div>
+
+    <div class="popups">
+      <dialog id="slice-add">
+        <form id="slice-add-form">
+          <legend>Add Slice</legend>
+          
+          <fieldset>
+            <label for="time_start">Time Start:</label>
+            <input type="time" id="time_start"/>
+
+            <label for="time_end">Time End:</label>
+            <input type="time" id="time_end"/>
+
+            <label for="slice_color">Color of Slice:</label>
+            <input type="color" id="slice_color"/>
+
+            <button id="slice-add-submit-button">Add Slice</button>
+          </fieldset>
+        </form>
+      </dialog>
+      
+      <dialog id="slice-edit">
+
+      </dialog>
+
+      <dialog id="slice-remove">
+
+      </dialog>
     </div>
   </div>
 </body>
