@@ -19,7 +19,7 @@
       <div class="menu">
         <ul>
           <li> <button id="slice-add-button" onclick="document.getElementById('slice-add').showModal()">Add a slice</button> </li>
-          <li> <button id="slice-edit-button">Edit a slice</button> </li>
+          <li> <button id="slice-edit-button" onclick="document.getElementById('slice-edit').showModal()">Edit a slice</button> </li>
           <li> <button id="slice-remove-button">Remove a slice</button> </li>
         </ul>
       </div>
@@ -50,7 +50,29 @@
       </dialog>
       
       <dialog id="slice-edit">
+        <form id="slice-edit-form">
+          <fieldset>
+            <legend>Add Slice</legend>
+          
+            <label for="slice-to-edit">Slice to Edit:</label>
+            <select name="slices" id="slice-select">
+              <option value="nothing">--Select for edit</option>
+            </select>
+          </fieldset>
 
+          <fieldset disabled>
+            <label for="time_start">Time Start:</label>
+            <input type="time" id="time_start"/>
+
+            <label for="time_end">Time End:</label>
+            <input type="time" id="time_end"/>
+
+            <label for="slice_color">Color of Slice:</label>
+            <input type="color" id="slice_color"/>
+
+            <button id="slice-add-submit-button">Edit Slice</button>
+          </fieldset>  
+        </form>
       </dialog>
 
       <dialog id="slice-remove">
