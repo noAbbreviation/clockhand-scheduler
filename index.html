@@ -9,6 +9,8 @@
     }
   </style>
   <link href="style.css" rel="stylesheet"/>
+  <script src="./script/drawers.js"></script>
+  <script src="./script/main.js"></script>
   <title>Clockhand Scheduler</title>
 </head>
 <body>
@@ -25,7 +27,12 @@
       </div>
 
       <div class="main-canvas">
-        <canvas id="main-canvas"></canvas>
+        <canvas id="main-canvas">
+          <p class="canvas-fallback">
+            It seems like the canvas does not work for you. Please use a modern web browser,
+            as this is the main way to interact with this web application.
+          </p>
+        </canvas>
       </div>
     </div>
 
