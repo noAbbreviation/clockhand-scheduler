@@ -91,6 +91,22 @@ function draw_line(
 
     draw_ctx.moveTo(dimensions.pos_x1, dimensions.pos_y1);
     draw_ctx.lineTo(dimensions.pos_x2, dimensions.pos_y2);
-    console.log(draw_ctx.lineWidth);
     draw_ctx.stroke();
+}
+
+function rotate_point(
+    point = {
+        pos_x: 10,
+        pos_y: 10,
+    },
+    radius,
+    angle,
+) {
+    const x_offset = radius * Math.cos(angle);
+    const y_offset = radius * Math.sin(angle);
+
+    return {
+        pos_x: point.pos_x + x_offset,
+        pos_y: point.pos_y + y_offset,
+    };
 }

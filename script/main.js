@@ -29,9 +29,7 @@ function draw_test(draw_ctx) {
     }, {
         font: "3em monospace",
         textAlign: "center",
-    },
-        "rgb(0,0,255)"
-    );
+    }, "rgb(0,0,255)");
     
     draw_line(draw_ctx, {
         pos_x1: 100,
@@ -43,4 +41,16 @@ function draw_test(draw_ctx) {
         strokeStyle: "rgb(255,0,0)",
         ...rounded_line_style,
     });
+
+    draw_text(
+        draw_ctx,
+        "9",
+        rotate_point({
+            pos_x: 250,
+            pos_y: 250,
+        }, 160, Math.PI),
+    {
+        font: "3em monospace",
+        textAlign: "center",
+    }, "green");
 }
