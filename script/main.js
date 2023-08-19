@@ -12,6 +12,11 @@ window.onload = (_event) => {
 }
 
 function draw_test(draw_ctx) {
+    let rounded_line_style = {
+        lineCap: "round",
+        lineJoin: "round",
+    };
+
     draw_circle(draw_ctx, {
         pos_x: 250,
         pos_y: 250,
@@ -26,5 +31,16 @@ function draw_test(draw_ctx) {
         textAlign: "center",
     },
         "rgb(0,0,255)"
-    )
+    );
+    
+    draw_line(draw_ctx, {
+        pos_x1: 100,
+        pos_y1: 100,
+        pos_x2: 200,
+        pos_y2: 200,
+    }, {
+        lineWidth: "30",
+        strokeStyle: "rgb(255,0,0)",
+        ...rounded_line_style,
+    });
 }

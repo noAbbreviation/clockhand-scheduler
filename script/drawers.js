@@ -67,3 +67,30 @@ function draw_circle(
     draw_ctx.strokeStyle = colors.strokeStyle;
     draw_ctx.stroke();
 }
+
+function draw_line(
+    draw_ctx,
+    dimensions = {
+        pos_x1: 10,
+        pos_y1: 10,
+        pos_x2: 10,
+        pos_y2: 10,
+    },
+    style = {
+        lineWidth: "30",
+        lineCap: "round",
+        lineJoin: "round",
+        strokeStyle: "rgb(0,0,0)"
+    }
+) {
+    draw_ctx.beginPath();
+    draw_ctx.lineWidth = style.lineWidth;
+    draw_ctx.lineCap = style.lineCap;
+    draw_ctx.lineJoin = style.lineJoin;
+    draw_ctx.strokeStyle = style.strokeStyle;
+
+    draw_ctx.moveTo(dimensions.pos_x1, dimensions.pos_y1);
+    draw_ctx.lineTo(dimensions.pos_x2, dimensions.pos_y2);
+    console.log(draw_ctx.lineWidth);
+    draw_ctx.stroke();
+}
