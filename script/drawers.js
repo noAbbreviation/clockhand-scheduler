@@ -26,11 +26,13 @@ function draw_text(
     style = {
         font: "30px serif",
         textAlign: "center",
+        textBaseline: "middle",
     },
     fillStyle = "rgb(255,255,255)"
 ) {
     draw_ctx.beginPath();
     draw_ctx.textAlign = style.textAlign;
+    draw_ctx.textBaseline = style.textBaseline;
     draw_ctx.fillStyle = fillStyle;
     draw_ctx.font = style.font;
     draw_ctx.fillText(text, dimensions.pos_x, dimensions.pos_y);
