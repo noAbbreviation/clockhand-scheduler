@@ -14,8 +14,13 @@ function draw_test(draw_ctx) {
         pos_x: 10,
         pos_y: 20,
         width: 30,
-        height: 40
+        height: 40,
     };
 
     draw_rect(draw_ctx, test_dimensions, "rgb(0,255,0)");
+    draw_circle(draw_ctx, {
+        pos_x: 200,
+        pos_y: 200,
+        radius: 100,
+    });
 }
