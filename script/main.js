@@ -2,6 +2,8 @@ let draw_ctx;
 
 window.onload = (_event) => {
     const main_canvas = document.querySelector("#main-canvas");
+    main_canvas.style["width"] = "100%";
+    main_canvas.style["height"] = "100%";
 
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
