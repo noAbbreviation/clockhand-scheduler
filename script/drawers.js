@@ -18,16 +18,24 @@ function draw_rect(
 
 function draw_text(
     draw_ctx,
+    text,
+    dimensions = {
+        pos_x: 100,
+        pos_y: 100,
+    },
     style = {
-        font: "20px serif",
+        font: "30px serif",
         textAlign: "center",
     },
-    colors = {
-        fillStyle: "rgb(255,255,255)",
-        strokeStyle: "rgb(0,0,0)",
-    }
+    fillStyle = "rgb(255,255,255)"
 ) {
+    draw_ctx.beginPath();
+    draw_ctx.textAlign = style.textAlign;
+    draw_ctx.fillStyle = fillStyle;
+    draw_ctx.font = style.font;
+    draw_ctx.fillText(text, dimensions.pos_x, dimensions.pos_y);
     
+    draw_ctx.stroke();
 }
 
 function draw_circle(

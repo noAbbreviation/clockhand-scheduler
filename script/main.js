@@ -12,17 +12,19 @@ window.onload = (_event) => {
 }
 
 function draw_test(draw_ctx) {
-    let test_dimensions = {
-        pos_x: 10,
-        pos_y: 20,
-        width: 30,
-        height: 40,
-    };
-
-    draw_rect(draw_ctx, test_dimensions, "rgb(0,255,0)");
     draw_circle(draw_ctx, {
-        pos_x: 200,
-        pos_y: 200,
-        radius: 100,
+        pos_x: 250,
+        pos_y: 250,
+        radius: 200,
     });
+
+    draw_text(draw_ctx, "hello", {
+        pos_x: 100,
+        pos_y: 100,
+    }, {
+        font: "3em monospace",
+        textAlign: "center",
+    },
+        "rgb(0,0,255)"
+    )
 }
