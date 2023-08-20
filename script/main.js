@@ -79,17 +79,17 @@ function draw_clock(draw_ctx) {
 
     for (let i=1; i<=12; i += 1) {
         rotating_point = rotate_point(center_coord, numbers_radius, current_angle);
-        if (i >= 10 && i != 12) {
-            rotating_point.pos_x += 3;
-        } 
 
-        draw_text(draw_ctx, `${i}`, {
-            pos_x: rotating_point.pos_x,
-            pos_y: rotating_point.pos_y + 5,
-        }, {
-            font: "2em monospace",
-            textAlign: "center",
-            textBaseline: "middle",
+        draw_line(draw_ctx, combine_points(center_coord, rotating_point), {
+            lineCap: "round",
+            lineJoin: "round",
+            strokeStyle: "grey",
+        });
+
+        draw_text(draw_ctx, `${i}`, rotating_point, {
+            font: "3em monospace",
+            // textAlign: "center",
+            // textBaseline: "middle",
         }, "black");
 
         current_angle += angle_in_12;
