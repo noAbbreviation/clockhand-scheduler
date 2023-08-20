@@ -8,8 +8,6 @@ window.onload = (_event) => {
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
         draw_clock(draw_ctx);
-
-        console.log(get_text_bounding_box(draw_ctx, "1", "3em monospace"));
     }
 }
 
@@ -75,8 +73,12 @@ function draw_clock(draw_ctx) {
     
     const angle_in_12 = Math.PI / 6;
     let current_angle = angle_in_12 * 10;
-    const numbers_radius = 200;
-
+    const numbers_radius = circle_dim.radius * 90 * 0.01;
+    draw_circle(draw_ctx, {...circle_dim, radius: numbers_radius}, {
+        fillStyle: "white",
+        strokeStyle: "black",
+    });
+   
     let rotating_point = {...center_coord};
 
     for (let i=1; i<=12; i += 1) {
@@ -93,7 +95,7 @@ function draw_clock(draw_ctx) {
             angle: current_angle,
             radius: numbers_radius,
         }, {
-            font: "3em monospace",
+            font: "2em monospace",
             // textAlign: "center",
             // textBaseline: "middle",
         }, "black");

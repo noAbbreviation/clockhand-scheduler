@@ -27,11 +27,17 @@ function draw_clock_text(
     fillStyle = "rgb(255,255,255)"
 ) {
     const box = get_text_bounding_box(draw_ctx, text, style.font);
-    let rotated_point = rotate_point(rotation_stat.center, rotation_stat.radius, rotation_stat.angle);
+    const text_center = {
+        width: box.width/2,
+        height: box.height/2,
+    }
+
+    const text_radius = Math.sqrt(text_center.width**2 + text_center.height**2);
+    let rotated_point = rotate_point(rotation_stat.center, rotation_stat.radius - text_radius * Math.SQRT1_2, rotation_stat.angle);
 
     rotated_point = {
-        pos_x: rotated_point.pos_x - box.width/2,
-        pos_y: rotated_point.pos_y + box.height/2,
+        pos_x: rotated_point.pos_x - text_center.width,
+        pos_y: rotated_point.pos_y + text_center.height,
     };
 
     draw_text(draw_ctx, text, rotated_point, style, fillStyle);
