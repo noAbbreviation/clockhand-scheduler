@@ -8,6 +8,8 @@ window.onload = (_event) => {
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
         draw_clock(draw_ctx);
+
+        console.log(get_text_bounding_box(draw_ctx, "1", "3em monospace"));
     }
 }
 
@@ -86,7 +88,11 @@ function draw_clock(draw_ctx) {
             strokeStyle: "grey",
         });
 
-        draw_text(draw_ctx, `${i}`, rotating_point, {
+        draw_clock_text(draw_ctx, `${i}`, {
+            center: center_coord,
+            angle: current_angle,
+            radius: numbers_radius,
+        }, {
             font: "3em monospace",
             // textAlign: "center",
             // textBaseline: "middle",
