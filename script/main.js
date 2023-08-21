@@ -9,7 +9,7 @@ window.onload = (_event) => {
         draw_ctx = main_canvas.getContext("2d");
 
         apply_defaults(draw_ctx);
-        draw_test_clock(draw_ctx);
+        draw_starting_clock(draw_ctx);
     }
 }
 
