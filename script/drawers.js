@@ -14,7 +14,7 @@ function draw_rect(
         lineJoin: "round",
     }
 ) {
-    apply_default(draw_ctx);
+    apply_defaults(draw_ctx);
     for (const style_prop in style) {
         draw_ctx[style_prop] = style[style_prop];
     }
@@ -36,7 +36,7 @@ function draw_text(
         fillStyle: "rgb(255,255,255)",
     }
 ) {
-    apply_default(draw_ctx);
+    apply_defaults(draw_ctx);
     for (const style_prop in style) {
         draw_ctx[style_prop] = style[style_prop];
     }
@@ -57,7 +57,7 @@ function draw_circle(
         strokeStyle: "rgb(0,0,0)",
     }
 ) {
-    apply_default(draw_ctx);
+    apply_defaults(draw_ctx);
     for (const style_prop in style) {
         draw_ctx[style_prop] = style[style_prop];
     }
@@ -91,7 +91,7 @@ function draw_line(
         strokeStyle: "rgb(0,0,0)",
     }
 ) {
-    apply_default(draw_ctx);
+    apply_defaults(draw_ctx);
     for (const style_prop in style) {
         draw_ctx[style_prop] = style[style_prop];
     }
@@ -151,7 +151,7 @@ function draw_circle_slice(
         lineJoin: "round",
     }
 ) {
-    apply_default(draw_ctx);
+    apply_defaults(draw_ctx);
     for (const style_prop in style) {
         draw_ctx[style_prop] = style[style_prop];
     }
