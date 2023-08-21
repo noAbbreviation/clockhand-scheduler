@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const options = document.querySelectorAll(".content button");
     for (const option of options) {
-        option.addEventListener("click", bind_option_buttons);
+        option.addEventListener("click", click_option_button);
         
         switch (option.id) {
             case "slice-add-button":
@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function bind_option_buttons() {
+function click_option_button() {
     render_starting_submenu_canvas();
 }
 
