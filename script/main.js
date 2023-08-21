@@ -27,6 +27,16 @@ function draw_test(draw_ctx) {
         strokeStyle: "orange"
     });
 
+    draw_circle_slice(draw_ctx,
+    {
+        pos_x: 250,
+        pos_y: 250,
+    },
+        170,
+        Math.PI * 3/4,
+        Math.PI * 5/4,
+    );
+
     draw_text(draw_ctx, "hello", {
         pos_x: 400,
         pos_y: 100,

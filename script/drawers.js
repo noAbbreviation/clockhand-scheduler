@@ -147,13 +147,10 @@ function draw_circle_slice(
         lineJoin: "round",
     }
 ) {
+    for (const style_prop in style) {
+        draw_ctx[style_prop] = style[style_prop];
+    }
     const start_point = rotate_point(center, radius, start_angle);
-    
-    draw_ctx.lineWidth = style.lineWidth;
-    draw_ctx.strokeStyle = style.strokeStyle;
-    draw_ctx.fillStyle = style.fillStyle;
-    draw_ctx.lineCap = style.lineCap;
-    draw_ctx.lineJoin = style.lineJoin;
     
     draw_ctx.beginPath();
     draw_ctx.moveTo(center.pos_x, center.pos_y);
