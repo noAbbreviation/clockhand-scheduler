@@ -2,6 +2,7 @@ let draw_ctx;
 
 window.addEventListener("DOMContentLoaded", () => {
     render_main_canvas();
+    bind_slice_add_form();
 
     const options = document.querySelectorAll(".content button");
     for (const option of options) {
@@ -9,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
         
         switch (option.id) {
             case "slice-add-button":
-                option.addEventListener("click", bind_slice_add_button);
+                option.addEventListener("click", () => {});
         }
     }
 
