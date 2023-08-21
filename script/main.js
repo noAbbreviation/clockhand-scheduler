@@ -24,12 +24,15 @@ function draw_test(draw_ctx) {
     });
 
     draw_text(draw_ctx, "hello", {
-        pos_x: 100,
+        pos_x: 400,
         pos_y: 100,
     }, {
         font: "3em monospace",
         textAlign: "center",
-    }, "rgb(0,0,255)");
+        fillStyle: "purple",
+        strokeStyle: "black",
+        lineWidth: "3",
+    });
     
     draw_line(draw_ctx, {
         pos_x1: 100,

@@ -17,7 +17,7 @@ function draw_rect(
     for (const style_prop in style) {
         draw_ctx[style_prop] = style[style_prop];
     }
-    
+
     draw_ctx.fillRect(dimensions.pos_x, dimensions.pos_y, dimensions.width, dimensions.height);
 }
 
@@ -32,17 +32,15 @@ function draw_text(
         font: "30px serif",
         textAlign: "center",
         textBaseline: "middle",
-    },
-    fillStyle = "rgb(255,255,255)"
+        fillStyle: "rgb(255,255,255)",
+    }
 ) {
-    draw_ctx.beginPath();
-    draw_ctx.textAlign = style.textAlign;
-    draw_ctx.textBaseline = style.textBaseline;
-    draw_ctx.fillStyle = fillStyle;
-    draw_ctx.font = style.font;
-    draw_ctx.fillText(text, dimensions.pos_x, dimensions.pos_y);
+    for (const style_prop in style) {
+        draw_ctx[style_prop] = style[style_prop];
+    }
     
-    draw_ctx.stroke();
+    draw_ctx.beginPath();
+    draw_ctx.fillText(text, dimensions.pos_x, dimensions.pos_y);
 }
 
 function draw_circle(
