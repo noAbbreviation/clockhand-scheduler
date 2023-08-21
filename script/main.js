@@ -7,7 +7,15 @@ window.onload = (_event) => {
 
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
+
+        apply_defaults(draw_ctx);
         draw_test_clock(draw_ctx);
+    }
+}
+
+function apply_defaults(draw_ctx) {
+    for (const prop in defaults) {
+        draw_ctx[prop] = defaults[prop];
     }
 }
 
@@ -124,8 +132,6 @@ function draw_test_clock(draw_ctx) {
         }, {
             font: "2em monospace",
             fillStyle: "black",
-            // textAlign: "center",
-            // textBaseline: "middle",
         });
 
         current_angle += angle_in_12;
