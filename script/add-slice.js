@@ -1,5 +1,5 @@
 function get_angle_on_hour(num) {
-    const starting_angle = 10 * ANGLE_IN_12;
+    const starting_angle = 9 * ANGLE_IN_12;
     return starting_angle + (Math.floor(num) * ANGLE_IN_12);
 }
 
