@@ -1,3 +1,5 @@
+const ANGLE_IN_12 = Math.PI / 6;
+
 const rounded_line_style = {
     lineCap: "round",
     lineJoin: "round",
@@ -14,4 +16,8 @@ const defaults = {
     textBaseline: "bottom",
 }
 
-const ANGLE_IN_12 = Math.PI / 6;
+function apply_defaults(draw_ctx) {
+    for (const prop in defaults) {
+        draw_ctx[prop] = defaults[prop];
+    }
+}
