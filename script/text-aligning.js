@@ -21,10 +21,10 @@ function draw_clock_text(
     },
     style = {
         font: "30px serif",
+        fillStyle: "rgb(255,255,255)",
         textAlign: "center",
         textBaseline: "middle",
-    },
-    fillStyle = "rgb(255,255,255)"
+    }
 ) {
     const box = get_text_bounding_box(draw_ctx, text, style.font);
     const text_center = {
@@ -40,5 +40,5 @@ function draw_clock_text(
         pos_y: rotated_point.pos_y + text_center.height,
     };
 
-    draw_text(draw_ctx, text, rotated_point, style, fillStyle);
+    draw_text(draw_ctx, text, rotated_point, style);
 }

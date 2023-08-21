@@ -7,7 +7,7 @@ window.onload = (_event) => {
 
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
-        draw_test(draw_ctx);
+        draw_test_clock(draw_ctx);
     }
 }
 
@@ -123,9 +123,10 @@ function draw_test_clock(draw_ctx) {
             radius: numbers_radius,
         }, {
             font: "2em monospace",
+            fillStyle: "black",
             // textAlign: "center",
             // textBaseline: "middle",
-        }, "black");
+        });
 
         current_angle += angle_in_12;
     }
