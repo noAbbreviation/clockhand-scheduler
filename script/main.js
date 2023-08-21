@@ -39,10 +39,10 @@ function draw_test(draw_ctx) {
     });
     
     draw_line(draw_ctx, {
-        pos_x1: 100,
-        pos_y1: 100,
-        pos_x2: 200,
-        pos_y2: 200,
+        pos_x1: 250,
+        pos_y1: 250,
+        pos_x2: 400,
+        pos_y2: 400,
     }, {
         lineWidth: "30",
         strokeStyle: "rgb(255,0,0)",

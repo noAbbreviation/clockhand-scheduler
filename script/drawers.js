@@ -88,12 +88,11 @@ function draw_line(
         strokeStyle: "rgb(0,0,0)"
     }
 ) {
-    draw_ctx.beginPath();
-    draw_ctx.lineWidth = style.lineWidth;
-    draw_ctx.lineCap = style.lineCap;
-    draw_ctx.lineJoin = style.lineJoin;
-    draw_ctx.strokeStyle = style.strokeStyle;
+    for (const style_prop in style) {
+        draw_ctx[style_prop] = style[style_prop];
+    }
 
+    draw_ctx.beginPath();
     draw_ctx.moveTo(dimensions.pos_x1, dimensions.pos_y1);
     draw_ctx.lineTo(dimensions.pos_x2, dimensions.pos_y2);
     draw_ctx.stroke();
