@@ -50,11 +50,15 @@ function draw_circle(
         pos_y: 10,
         radius: 10,
     },
-    colors = {
+    style = {
         fillStyle: "rgb(255,255,255)",
         strokeStyle: "rgb(0,0,0)",
     }
 ) {
+    for (const style_prop in style) {
+        draw_ctx[style_prop] = style[style_prop];
+    }
+
     draw_ctx.beginPath();
     draw_ctx.ellipse(
         dimensions.pos_x,
@@ -65,11 +69,7 @@ function draw_circle(
         0,
         2 * Math.PI
     );
-
-    draw_ctx.fillStyle = colors.fillStyle;
     draw_ctx.fill();
-    
-    draw_ctx.strokeStyle = colors.strokeStyle;
     draw_ctx.stroke();
 }
 

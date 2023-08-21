@@ -21,6 +21,10 @@ function draw_test(draw_ctx) {
         pos_x: 250,
         pos_y: 250,
         radius: 200,
+    }, {
+        lineWidth: "8",
+        fillStyle: "white",
+        strokeStyle: "orange"
     });
 
     draw_text(draw_ctx, "hello", {
