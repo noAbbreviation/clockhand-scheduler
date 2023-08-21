@@ -7,7 +7,7 @@ window.onload = (_event) => {
 
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
-        draw_clock(draw_ctx);
+        draw_test_clock(draw_ctx);
     }
 }
 
@@ -55,7 +55,7 @@ function draw_test(draw_ctx) {
     }, "green");
 }
 
-function draw_clock(draw_ctx) {
+function draw_test_clock(draw_ctx) {
     const center_coord = {
         pos_x: 250,
         pos_y: 250,
