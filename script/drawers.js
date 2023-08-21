@@ -127,3 +127,38 @@ function combine_points(point1 = {
         pos_y2: point2.pos_y,
     };
 }
+
+function draw_circle_slice(
+    draw_ctx,
+    center = {
+        pos_x: 10,
+        pos_y: 10,
+    },
+    radius,
+    start_angle,
+    end_angle,
+    style = {
+        fillStyle: "white",
+        strokeStyle: "black",
+        lineWidth: "10",
+        lineCap: "round",
+        lineJoin: "round",
+    }
+) {
+    const start_point = rotate_point(center, radius, start_angle);
+    
+    draw_ctx.lineWidth = style.lineWidth;
+    draw_ctx.strokeStyle = style.strokeStyle;
+    draw_ctx.fillStyle = style.fillStyle;
+    draw_ctx.lineCap = style.lineCap;
+    draw_ctx.lineJoin = style.lineJoin;
+    
+    draw_ctx.beginPath();
+    draw_ctx.moveTo(center.pos_x, center.pos_y);
+    draw_ctx.lineTo(start_point.pos_x, start_point.pos_y);
+    draw_ctx.arc(center.pos_x, center.pos_y, radius, start_angle, end_angle);
+    draw_ctx.lineTo(center.pos_x, center.pos_y);
+
+    draw_ctx.stroke();
+    draw_ctx.fill();
+}

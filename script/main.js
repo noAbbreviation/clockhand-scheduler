@@ -81,14 +81,22 @@ function draw_clock(draw_ctx) {
    
     let rotating_point = {...center_coord};
 
+    draw_circle_slice(
+        draw_ctx,
+        center_coord,
+        circle_dim.radius,
+        angle_in_12 * 10,
+        3 * angle_in_12,
+    {
+        fillStyle: "lightgray",
+        strokeStyle: "red",
+        lineWidth: "6",
+        lineCap: "round",
+        lineJoin: "round",
+    });
+
     for (let i=1; i<=12; i += 1) {
         rotating_point = rotate_point(center_coord, numbers_radius, current_angle);
-
-        draw_line(draw_ctx, combine_points(center_coord, rotating_point), {
-            lineCap: "round",
-            lineJoin: "round",
-            strokeStyle: "grey",
-        });
 
         draw_clock_text(draw_ctx, `${i}`, {
             center: center_coord,
