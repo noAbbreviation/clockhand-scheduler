@@ -6,7 +6,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const options = document.querySelectorAll(".content button");
     for (const option of options) {
         option.addEventListener("click", bind_option_buttons);
+        
+        switch (option.id) {
+            case "slice-add-button":
+                option.addEventListener("click", bind_slice_add_button);
+        }
     }
+
 });
 
 function bind_option_buttons() {
@@ -35,4 +41,17 @@ function render_starting_submenu_canvas() {
 
         draw_starting_clock(sub_ctx);
     }
+}
+
+function bind_slice_add_button() {
+    const form = document.querySelector(".popups #slice-add-form");
+
+    form.context = {};
+    const form_store = form.context;
+
+    const time_start = form.querySelector("#time_start");
+    time_start.addEventListener("input", (event) => {
+        form_store.time_start = event.target.value;
+        console.log(form.context.time_start);
+    });
 }
