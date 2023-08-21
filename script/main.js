@@ -7,7 +7,7 @@ window.onload = (_event) => {
 
     if (main_canvas.getContext) {
         draw_ctx = main_canvas.getContext("2d");
-        draw_test_clock(draw_ctx);
+        draw_test(draw_ctx);
     }
 }
 
@@ -53,6 +53,8 @@ function draw_test(draw_ctx) {
         font: "3em monospace",
         textAlign: "center",
     }, "green");
+
+    draw_rect(draw_ctx);
 }
 
 function draw_test_clock(draw_ctx) {

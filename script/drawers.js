@@ -6,13 +6,18 @@ function draw_rect(
         width: 100, 
         height: 100, 
     },
-    fill_style = "rgb(0,0,0)"
-) {
-    if (draw_ctx === null) {
-        return;
+    style = {
+        fillStyle: "white",
+        strokeStyle: "black",
+        lineWidth: "5",
+        lineCap: "round",
+        lineJoin: "round",
     }
-
-    draw_ctx.fillStyle = fill_style;
+) {
+    for (const style_prop in style) {
+        draw_ctx[style_prop] = style[style_prop];
+    }
+    
     draw_ctx.fillRect(dimensions.pos_x, dimensions.pos_y, dimensions.width, dimensions.height);
 }
 
