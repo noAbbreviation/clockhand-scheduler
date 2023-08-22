@@ -32,6 +32,7 @@ function input_change_slice_add(event) {
         draw_starting_clock(element.draw_ctx);
         draw_line(element.draw_ctx, combine_points(center, rotated_point));
     }
+    draw_new_slice(element);
 }
 
 function get_time_array(time_str) {
@@ -48,4 +49,31 @@ function get_angle_from_time(time) {
         [hour, minute] = time;
     }
     return get_angle_on_hour(hour) + get_angle_on_minute(minute);
+}
+
+function draw_new_slice(element) {
+    const form_store = element.form_store;
+    const draw_ctx = element.draw_ctx;
+    const center = {
+        pos_x: 250,
+        pos_y: 250,
+    };
+    const radius = 230;
+
+    if (is_undef_empty(form_store.time_start) || is_undef_empty(form_store.time_end) || is_undef_empty(form_store.slice_color)) {
+        console.log(form_store);
+        return;
+    }
+    const start_angle = get_angle_from_time(form_store.time_start);
+    const end_angle = get_angle_from_time(form_store.time_end);
+
+    draw_starting_clock(draw_ctx);
+    draw_circle_slice(draw_ctx, center, radius, start_angle, end_angle, {
+        lineWidth: "7",
+        strokeStyle: form_store.slice_color,
+    });
+}
+
+function is_undef_empty(stuff) {
+    return (stuff == undefined || stuff === "");
 }
