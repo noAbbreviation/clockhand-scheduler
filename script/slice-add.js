@@ -22,8 +22,11 @@ function bind_slice_add_form() {
 function click_submit_slice_add(event) {
     event.preventDefault();
     
-    get_globals().slices.push(event.target.context);
-    console.table(get_globals().slices);
+    const slices = get_globals().slices;
+    slices.push(event.target.context);
+    
+    const dialog = document.querySelector("dialog#slice-add"); 
+    dialog.close();
 }
 
 
