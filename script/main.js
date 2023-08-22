@@ -27,7 +27,7 @@ function init_globals() {
             pos_y: 250,
         },
         circle_style: {
-            lineWidth: "5",
+            lineWidth: "10",
             strokeStyle: "rgb(175, 175, 175)",
         },
         inner_dot_style: {
@@ -54,8 +54,8 @@ function init_globals() {
             lineWidth: "3",
         },
         outer_stroke: {
-            lineWidth: "7",
-            strokeStyle: "white",
+            lineWidth: "6",
+            strokeStyle: "rgb(253, 255, 240)",
         }
     };
 
