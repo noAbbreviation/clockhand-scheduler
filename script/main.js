@@ -2,6 +2,7 @@ let draw_ctx;
 
 window.addEventListener("DOMContentLoaded", () => {
     init_globals();
+    init_submenu_canvases();
     render_main_canvas();
     bind_slice_add_form();
 
@@ -14,7 +15,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 option.addEventListener("click", () => {});
         }
     }
-
 });
 
 function init_globals() {
@@ -56,8 +56,13 @@ function get_globals() {
     return document.querySelector(".main-container").context;
 }
 
-function click_option_button() {
-    render_starting_submenu_canvas();
+function click_option_button(event) {
+    const canvas_names = event.target.id.split("-");
+    canvas_names.pop();
+    
+    const form_id = canvas_names.join("-");
+    const draw_ctx = document.querySelector(`#${form_id} #submenu-canvas`).getContext("2d");
+    draw_starting_clock(draw_ctx);
 }
 
 function render_main_canvas() {
@@ -73,13 +78,10 @@ function render_main_canvas() {
     }
 }
 
-function render_starting_submenu_canvas() {
+function init_submenu_canvases() {
     const sub_canvases = document.querySelectorAll("#submenu-canvas");
     for (const sub_canvas of sub_canvases) {
-        const sub_ctx = sub_canvas.getContext("2d");
         sub_canvas.style["width"] = "100%";
         sub_canvas.style["height"] = "100%";
-
-        draw_starting_clock(sub_ctx);
     }
 }
