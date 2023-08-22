@@ -36,6 +36,14 @@ function init_globals() {
         },
         circle_radius: 230,
     };
+
+    globals.clock_texts_style = {
+        center: globals.clock_circle_style.center,
+        text_radius: globals.clock_circle_style.circle_radius * 88 * 0.01,
+        clock_text_style: {
+            fillStyle: "rgb(49, 49, 49)",
+        },
+    };
     
     main_container.context = {};
     main_container.context = globals;
