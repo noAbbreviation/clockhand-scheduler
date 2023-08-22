@@ -29,6 +29,7 @@ function input_change_slice_add(event) {
         };
         const rotated_point = rotate_point(center, 230, time_angle);
 
+        draw_starting_clock(element.draw_ctx);
         draw_line(element.draw_ctx, combine_points(center, rotated_point));
     }
 }
