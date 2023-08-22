@@ -1,6 +1,7 @@
 let draw_ctx;
 
 window.addEventListener("DOMContentLoaded", () => {
+    init_globals();
     render_main_canvas();
     bind_slice_add_form();
 
@@ -15,6 +16,34 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+function init_globals() {
+    const main_container = document.querySelector(".main-container");
+    const globals = {};
+    
+    globals.clock_circle_style = {
+        center: {
+            pos_x: 250,
+            pos_y: 250,
+        },
+        circle_style: {
+            lineWidth: "5",
+            strokeStyle: "rgb(175, 175, 175)",
+        },
+        dot_style: {
+            lineWidth: "3",
+            strokeStyle: "black",
+        },
+        circle_radius: 230,
+    };
+    
+    main_container.context = {};
+    main_container.context = globals;
+}
+
+function get_globals() {
+    return document.querySelector(".main-container").context;
+}
 
 function click_option_button() {
     render_starting_submenu_canvas();

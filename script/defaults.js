@@ -39,22 +39,10 @@ function draw_starting_clock(draw_ctx) {
 }
 
 function draw_clock_bg(draw_ctx) {
-    const center = {
-        pos_x: 250,
-        pos_y: 250,
-    };
-    const circle_style = {
-        lineWidth: "5",
-        strokeStyle: "rgb(175, 175, 175)",
-    };
-    const dot_style = {
-        lineWidth: "3",
-        strokeStyle: "black",
-    };
-    const circle_radius = 230;
+    const global = get_globals().clock_circle_style;
     
-    draw_circle(draw_ctx, {...center, radius: circle_radius}, circle_style);
-    draw_circle(draw_ctx, {...center, radius: 1}, dot_style); 
+    draw_circle(draw_ctx, {...global.center, radius: global.circle_radius}, global.circle_style);
+    draw_circle(draw_ctx, {...global.center, radius: 1}, global.dot_style); 
 }
 
 function draw_clock_texts(draw_ctx) {

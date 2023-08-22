@@ -3,7 +3,7 @@ function bind_slice_add_form() {
     const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
     
     const submit_button = document.querySelector("#slice-add-submit-button");
-    submit_button.addEventListener("click", click_submit_slice_add);
+    // submit_button.addEventListener("click", click_submit_slice_add);
 
     form.draw_ctx = draw_ctx;
     form.context = {};
