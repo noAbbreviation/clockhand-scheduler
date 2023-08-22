@@ -29,8 +29,9 @@ function input_change_slice_add(event) {
         };
         const rotated_point = rotate_point(center, 230, time_angle);
 
-        draw_starting_clock(element.draw_ctx);
+        draw_clock_bg(element.draw_ctx);
         draw_line(element.draw_ctx, combine_points(center, rotated_point));
+        draw_clock_texts(element.draw_ctx);
     }
     draw_new_slice(element);
 }
@@ -67,11 +68,12 @@ function draw_new_slice(element) {
     const start_angle = get_angle_from_time(form_store.time_start);
     const end_angle = get_angle_from_time(form_store.time_end);
 
-    draw_starting_clock(draw_ctx);
+    draw_clock_bg(draw_ctx);
     draw_circle_slice(draw_ctx, center, radius, start_angle, end_angle, {
         lineWidth: "7",
         strokeStyle: form_store.slice_color,
     });
+    draw_clock_texts(draw_ctx);
 }
 
 function is_undef_empty(stuff) {

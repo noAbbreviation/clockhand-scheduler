@@ -32,7 +32,13 @@ function get_angle_on_minute(num) {
     return (Math.floor(num) / MINUTES_ON_HOUR) * ANGLE_IN_12;
 }
 
+
 function draw_starting_clock(draw_ctx) {
+    draw_clock_bg(draw_ctx);
+    draw_clock_texts(draw_ctx);
+}
+
+function draw_clock_bg(draw_ctx) {
     const center = {
         pos_x: 250,
         pos_y: 250,
@@ -41,18 +47,27 @@ function draw_starting_clock(draw_ctx) {
         lineWidth: "5",
         strokeStyle: "rgb(175, 175, 175)",
     };
-    const clock_text_style = {
-        fillStyle: "rgb(49, 49, 49)",
-    };
     const dot_style = {
         lineWidth: "3",
         strokeStyle: "black",
     };
     const circle_radius = 230;
-    const text_radius = circle_radius * 88 * 0.01;
-
+    
     draw_circle(draw_ctx, {...center, radius: circle_radius}, circle_style);
-    draw_circle(draw_ctx, {...center, radius: 1}, dot_style);
+    draw_circle(draw_ctx, {...center, radius: 1}, dot_style); 
+}
+
+function draw_clock_texts(draw_ctx) {
+    console.log("here");
+    const center = {
+        pos_x: 250,
+        pos_y: 250,
+    };
+    const circle_radius = 230;
+    const text_radius = circle_radius * 88 * 0.01;
+    const clock_text_style = {
+        fillStyle: "rgb(49, 49, 49)",
+    };
 
     for (let i=1; i<=12; i++) {
         draw_clock_text(draw_ctx, `${i}`, {
