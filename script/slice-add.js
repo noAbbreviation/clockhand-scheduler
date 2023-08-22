@@ -1,6 +1,9 @@
 function bind_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
-    let draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
+    const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
+    
+    const submit_button = document.querySelector("#slice-add-submit-button");
+    submit_button.addEventListener("click", click_submit_slice_add);
 
     form.draw_ctx = draw_ctx;
     form.context = {};
@@ -63,7 +66,6 @@ function draw_new_slice(element) {
     const radius = 230;
 
     if (form_store.time_start === "" || form_store.time_end === "" || form_store.slice_color === "") {
-        console.log(form_store);
         return;
     }
     const start_angle = get_angle_from_time(form_store.time_start);
