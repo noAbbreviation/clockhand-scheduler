@@ -11,6 +11,7 @@ function bind_slice_add_form() {
 
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
+        form.context[input.id] = input.value; 
     }
 }
 
@@ -61,7 +62,7 @@ function draw_new_slice(element) {
     };
     const radius = 230;
 
-    if (is_undef_empty(form_store.time_start) || is_undef_empty(form_store.time_end) || is_undef_empty(form_store.slice_color)) {
+    if (form_store.time_start === "" || form_store.time_end === "" || form_store.slice_color === "") {
         console.log(form_store);
         return;
     }
@@ -74,8 +75,4 @@ function draw_new_slice(element) {
         strokeStyle: form_store.slice_color,
     });
     draw_clock_texts(draw_ctx);
-}
-
-function is_undef_empty(stuff) {
-    return (stuff == undefined || stuff === "");
 }
