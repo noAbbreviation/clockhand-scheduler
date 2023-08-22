@@ -64,7 +64,6 @@ function init_globals() {
     
     main_container.context = {};
     main_container.context = globals;
-    console.log(globals);
 }
 
 function get_globals() {
