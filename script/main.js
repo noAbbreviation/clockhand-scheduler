@@ -44,9 +44,12 @@ function init_globals() {
             fillStyle: "rgb(49, 49, 49)",
         },
     };
+
+    globals.slices = [];
     
     main_container.context = {};
     main_container.context = globals;
+    console.log(globals);
 }
 
 function get_globals() {

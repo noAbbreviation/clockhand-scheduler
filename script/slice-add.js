@@ -2,21 +2,30 @@ function bind_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
     const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
     
-    const submit_button = document.querySelector("#slice-add-submit-button");
-    // submit_button.addEventListener("click", click_submit_slice_add);
-
     form.draw_ctx = draw_ctx;
     form.context = {};
-
+    
     const form_inputs = form.querySelectorAll("input");
     for (const input of form_inputs) {
         input.addEventListener("input", input_change_slice_add);
-
+        
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
         form.context[input.id] = input.value; 
     }
+
+    const submit_button = document.querySelector("#slice-add-submit-button");
+    submit_button.addEventListener("click", click_submit_slice_add);        
+    submit_button.context = form.context;
 }
+
+function click_submit_slice_add(event) {
+    event.preventDefault();
+    
+    get_globals().slices.push(event.target.context);
+    console.table(get_globals().slices);
+}
+
 
 function input_change_slice_add(event) {
     const element = event.target;
