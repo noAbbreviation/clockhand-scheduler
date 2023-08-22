@@ -65,7 +65,8 @@ function click_option_button(event) {
     dialog.showModal();
     
     const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
-    draw_starting_clock(draw_ctx);
+    const slices = get_globals().slices;
+    draw_clock_slices(draw_ctx, slices);
 }
 
 function render_main_canvas() {
