@@ -80,20 +80,30 @@ function draw_new_slice(draw_ctx, form_store) {
     }
     const start_angle = get_angle_from_time(form_store.time_start);
     const end_angle = get_angle_from_time(form_store.time_end);
-    const current_slices = get_globals().slices;
+    const globals = get_globals();
+    const current_slices = globals.slices;
+    const clock_style = globals.clock_circle_style;
+    const slice_style = globals.clock_slice_style;
 
     draw_clock_slices(draw_ctx, current_slices, true);
-    draw_circle_slice(draw_ctx, global.center, global.circle_radius, start_angle, end_angle, {
-        lineWidth: "7",
-        strokeStyle: form_store.slice_color,
-    });
+    draw_circle_slice(
+        draw_ctx,
+        clock_style.center,
+        clock_style.circle_radius,
+        start_angle,
+        end_angle,
+        {...slice_style.inner_stroke, strokeStyle: form_store.slice_color},
+        slice_style.outer_stroke
+    );
     draw_clock_dot(draw_ctx);
-    
+
     draw_clock_texts(draw_ctx);
 }
 
 function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
-    const global = get_globals().clock_circle_style;
+    const globals = get_globals();
+    const global = globals.clock_circle_style;
+    const slice_style = globals.clock_slice_style;
 
     clear_canvas(draw_ctx);
     draw_clock_bg(draw_ctx);
@@ -101,10 +111,15 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
         const start_angle = get_angle_from_time(slice.time_start);
         const end_angle = get_angle_from_time(slice.time_end);
 
-        draw_circle_slice(draw_ctx, global.center, global.circle_radius, start_angle, end_angle, {
-            lineWidth: "7",
-            strokeStyle: slice.slice_color,
-        });
+        draw_circle_slice(
+            draw_ctx,
+            global.center,
+            global.circle_radius,
+            start_angle,
+            end_angle,
+            {...slice_style.inner_stroke, strokeStyle: slice.slice_color},
+            slice_style.outer_stroke
+        );
     }
     draw_clock_dot(draw_ctx);
 

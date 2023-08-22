@@ -49,6 +49,16 @@ function init_globals() {
         },
     };
 
+    globals.clock_slice_style = {
+        inner_stroke: {
+            lineWidth: "3",
+        },
+        outer_stroke: {
+            lineWidth: "7",
+            strokeStyle: "white",
+        }
+    };
+
     globals.slices = [];
     
     main_container.context = {};

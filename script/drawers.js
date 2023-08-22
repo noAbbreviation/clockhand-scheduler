@@ -143,17 +143,19 @@ function draw_circle_slice(
     radius,
     start_angle,
     end_angle,
-    style = {
+    inner_stroke_style = {
         fillStyle: "white",
         strokeStyle: "black",
         lineWidth: "10",
         lineCap: "round",
         lineJoin: "round",
-    }
+    },
+    outer_stroke_style = {},
 ) {
     apply_defaults(draw_ctx);
-    for (const style_prop in style) {
-        draw_ctx[style_prop] = style[style_prop];
+    const fallback_style = {...inner_stroke_style, ...outer_stroke_style};
+    for (const style_prop in fallback_style) {
+        draw_ctx[style_prop] = outer_stroke_style[style_prop];
     }
     const start_point = rotate_point(center, radius, start_angle);
     
@@ -165,4 +167,10 @@ function draw_circle_slice(
 
     draw_ctx.stroke();
     draw_ctx.fill();
+    
+    apply_defaults(draw_ctx);
+    for (const style_prop in inner_stroke_style) {
+        draw_ctx[style_prop] = inner_stroke_style[style_prop];
+    }
+    draw_ctx.stroke();
 }
