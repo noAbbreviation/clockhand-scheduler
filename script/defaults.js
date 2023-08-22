@@ -27,6 +27,11 @@ function get_angle_on_hour(num) {
     return starting_angle + (Math.floor(num) * ANGLE_IN_12);
 }
 
+function get_angle_on_minute(num) {
+    const MINUTES_ON_HOUR = 60;
+    return (Math.floor(num) / MINUTES_ON_HOUR) * ANGLE_IN_12;
+}
+
 function draw_starting_clock(draw_ctx) {
     const center = {
         pos_x: 250,

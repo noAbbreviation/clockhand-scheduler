@@ -85,7 +85,7 @@ function draw_line(
         pos_y2: 10,
     },
     style = {
-        lineWidth: "30",
+        lineWidth: "5",
         lineCap: "round",
         lineJoin: "round",
         strokeStyle: "rgb(0,0,0)",
