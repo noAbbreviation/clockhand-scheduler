@@ -87,6 +87,8 @@ function draw_new_slice(draw_ctx, form_store) {
         lineWidth: "7",
         strokeStyle: form_store.slice_color,
     });
+    draw_clock_dot(draw_ctx);
+    
     draw_clock_texts(draw_ctx);
 }
 
