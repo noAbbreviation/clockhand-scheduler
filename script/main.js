@@ -30,9 +30,13 @@ function init_globals() {
             lineWidth: "5",
             strokeStyle: "rgb(175, 175, 175)",
         },
-        dot_style: {
-            lineWidth: "3",
+        inner_dot_style: {
+            lineWidth: "10",
             strokeStyle: "black",
+        },
+        outer_dot_style: {
+            lineWidth: "15",
+            strokeStyle: defaults.fillStyle,
         },
         circle_radius: 230,
     };

@@ -104,6 +104,8 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
             strokeStyle: slice.slice_color,
         });
     }
+    draw_clock_dot(draw_ctx);
+
     if (!remove_text_flag) {
         draw_clock_texts(draw_ctx);
     }

@@ -46,9 +46,13 @@ function clear_canvas(draw_ctx) {
 
 function draw_clock_bg(draw_ctx) {
     const global = get_globals().clock_circle_style;
-    
     draw_circle(draw_ctx, {...global.center, radius: global.circle_radius}, global.circle_style);
-    draw_circle(draw_ctx, {...global.center, radius: 1}, global.dot_style); 
+}
+
+function draw_clock_dot(draw_ctx) {
+    const global = get_globals().clock_circle_style;
+    draw_circle(draw_ctx, {...global.center, radius: 1}, global.outer_dot_style);
+    draw_circle(draw_ctx, {...global.center, radius: 1}, global.inner_dot_style);
 }
 
 function draw_clock_texts(draw_ctx) {
