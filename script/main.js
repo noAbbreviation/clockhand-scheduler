@@ -73,8 +73,6 @@ function render_main_canvas() {
     
     if (main_canvas.getContext) {
         const draw_ctx = main_canvas.getContext("2d");
-
-        apply_defaults(draw_ctx);
         draw_starting_clock(draw_ctx);
     }
 }

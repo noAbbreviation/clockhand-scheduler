@@ -88,6 +88,7 @@ function draw_clock_slices(draw_ctx, slices) {
     const global = get_globals().clock_circle_style;
     if (slices.length === 0) return;
 
+    clear_canvas(draw_ctx);
     draw_clock_bg(draw_ctx);
     for (const slice of slices) {
         const start_angle = get_angle_from_time(slice.time_start);

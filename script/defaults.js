@@ -34,8 +34,14 @@ function get_angle_on_minute(num) {
 
 
 function draw_starting_clock(draw_ctx) {
+    clear_canvas(draw_ctx);
     draw_clock_bg(draw_ctx);
     draw_clock_texts(draw_ctx);
+}
+
+function clear_canvas(draw_ctx) {
+    const canvas = draw_ctx.canvas;
+    draw_ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function draw_clock_bg(draw_ctx) {
