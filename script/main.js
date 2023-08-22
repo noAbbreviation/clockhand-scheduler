@@ -60,8 +60,11 @@ function click_option_button(event) {
     const canvas_names = event.target.id.split("-");
     canvas_names.pop();
     
-    const form_id = canvas_names.join("-");
-    const draw_ctx = document.querySelector(`#${form_id} #submenu-canvas`).getContext("2d");
+    const dialog_id = canvas_names.join("-");
+    const dialog = document.querySelector(`#${dialog_id}`);
+    dialog.showModal();
+    
+    const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
     draw_starting_clock(draw_ctx);
 }
 
