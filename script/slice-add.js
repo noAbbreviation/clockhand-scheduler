@@ -25,7 +25,8 @@ function click_submit_slice_add(event) {
     event.preventDefault();
     
     const slices = globals.slices;
-    slices.push(event.target.context);
+    const new_slice = {...event.target.context};
+    slices.push(new_slice);
     
     const dialog = document.querySelector("dialog#slice-add"); 
     dialog.close();
@@ -79,8 +80,9 @@ function draw_new_slice(draw_ctx, form_store) {
     }
     const start_angle = get_angle_from_time(form_store.time_start);
     const end_angle = get_angle_from_time(form_store.time_end);
-    
-    draw_clock_bg(draw_ctx);
+    const current_slices = get_globals().slices;
+
+    draw_clock_slices(draw_ctx, current_slices, true);
     draw_circle_slice(draw_ctx, global.center, global.circle_radius, start_angle, end_angle, {
         lineWidth: "7",
         strokeStyle: form_store.slice_color,
@@ -88,7 +90,7 @@ function draw_new_slice(draw_ctx, form_store) {
     draw_clock_texts(draw_ctx);
 }
 
-function draw_clock_slices(draw_ctx, slices) {
+function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
     const global = get_globals().clock_circle_style;
 
     clear_canvas(draw_ctx);
@@ -102,5 +104,7 @@ function draw_clock_slices(draw_ctx, slices) {
             strokeStyle: slice.slice_color,
         });
     }
-    draw_clock_texts(draw_ctx);
+    if (!remove_text_flag) {
+        draw_clock_texts(draw_ctx);
+    }
 }
