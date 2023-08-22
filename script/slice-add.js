@@ -1,19 +1,15 @@
 function bind_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
-    let sub_canvases = [...document.querySelectorAll("#submenu-canvas")];
-    let contexts = [];
-    for (let element of sub_canvases) {
-        contexts.push(element.getContext("2d"));
-    }
+    let draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
 
-    form.draw_ctx = contexts;
+    form.draw_ctx = draw_ctx;
     form.context = {};
 
     const form_inputs = form.querySelectorAll("input");
     for (const input of form_inputs) {
         input.addEventListener("input", input_change_slice_add);
 
-        input.draw_ctx = contexts;
+        input.draw_ctx = draw_ctx;
         input.form_store = form.context;
     }
 }
@@ -33,9 +29,7 @@ function input_change_slice_add(event) {
         };
         const rotated_point = rotate_point(center, 230, time_angle);
 
-        for (const draw_ctx of element.draw_ctx) {
-            draw_line(draw_ctx, combine_points(center, rotated_point));
-        }
+        draw_line(element.draw_ctx, combine_points(center, rotated_point));
     }
 }
 
