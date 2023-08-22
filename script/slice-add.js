@@ -17,3 +17,8 @@ function input_change_slice_add(event) {
     element.form_store[element.id] = new_value;
     console.log(element.form_store[element.id]);
 }
+
+function get_time_array(time_str) {
+    let [hour, minute] = time_str.split(":");
+    return [Number(hour) % 24, Number(minute)];
+}
