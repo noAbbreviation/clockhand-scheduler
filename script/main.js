@@ -1,5 +1,3 @@
-let draw_ctx;
-
 window.addEventListener("DOMContentLoaded", () => {
     init_globals();
     init_submenu_canvases();
@@ -74,7 +72,7 @@ function render_main_canvas() {
     main_canvas.style["height"] = "100%";
     
     if (main_canvas.getContext) {
-        draw_ctx = main_canvas.getContext("2d");
+        const draw_ctx = main_canvas.getContext("2d");
 
         apply_defaults(draw_ctx);
         draw_starting_clock(draw_ctx);

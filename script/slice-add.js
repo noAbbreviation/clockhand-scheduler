@@ -68,22 +68,35 @@ function get_angle_from_time(time) {
 }
 
 function draw_new_slice(draw_ctx, form_store) {
-    const center = {
-        pos_x: 250,
-        pos_y: 250,
-    };
-    const radius = 230;
+    const global = get_globals().clock_circle_style;
 
     if (form_store.time_start === "" || form_store.time_end === "" || form_store.slice_color === "") {
         return;
     }
     const start_angle = get_angle_from_time(form_store.time_start);
     const end_angle = get_angle_from_time(form_store.time_end);
-
+    
     draw_clock_bg(draw_ctx);
-    draw_circle_slice(draw_ctx, center, radius, start_angle, end_angle, {
+    draw_circle_slice(draw_ctx, global.center, global.circle_radius, start_angle, end_angle, {
         lineWidth: "7",
         strokeStyle: form_store.slice_color,
     });
+    draw_clock_texts(draw_ctx);
+}
+
+function draw_clock_slices(draw_ctx, slices) {
+    const global = get_globals().clock_circle_style;
+    if (slices.length === 0) return;
+
+    draw_clock_bg(draw_ctx);
+    for (const slice of slices) {
+        const start_angle = get_angle_from_time(slice.time_start);
+        const end_angle = get_angle_from_time(slice.time_end);
+
+        draw_circle_slice(draw_ctx, global.center, global.circle_radius, start_angle, end_angle, {
+            lineWidth: "7",
+            strokeStyle: slice.slice_color,
+        });
+    }
     draw_clock_texts(draw_ctx);
 }
