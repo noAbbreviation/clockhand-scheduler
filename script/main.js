@@ -49,7 +49,7 @@ function init_globals() {
         },
     };
 
-    globals.clock_slice_style = {
+    globals.clock_slices_style = {
         inner_stroke: {
             lineWidth: "3",
         },
