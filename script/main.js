@@ -2,9 +2,10 @@ window.addEventListener("DOMContentLoaded", () => {
     init_globals();
     init_canvases();
     bind_slice_add_form();
+    init_download_button();
     render_main_canvas();
     
-    const options = document.querySelectorAll(".content button");
+    const options = document.querySelectorAll(".menu ul button");
     for (const option of options) {
         option.addEventListener("click", click_option_button);
         
@@ -104,4 +105,18 @@ function init_canvases() {
         sub_canvas.style["width"] = "100%";
         sub_canvas.style["height"] = "100%";
     }
+}
+
+function init_download_button() {
+    const download_btn = document.querySelector("#download-canvas-button");
+
+    download_btn.addEventListener("click", () => {
+        const canvas_element = get_globals().main_canvas.draw_ctx.canvas;
+        const download_loader = document.querySelector("#download-loader");
+        const canvas_as_stream = canvas_element.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        
+        download_loader.setAttribute("download", "schedule.png");
+        download_loader.setAttribute("href", canvas_as_stream);
+        download_loader.click();
+    });
 }
