@@ -35,7 +35,6 @@ function input_change_slice_add(event) {
     const new_value = element.value;
 
     element.form_store[element.id] = new_value;
-    console.log(element.form_store[element.id]);
 
     if (new_value.includes(":")) {
         const time_angle = get_angle_from_time(new_value);
@@ -49,7 +48,7 @@ function input_change_slice_add(event) {
         draw_line(element.draw_ctx, combine_points(center, rotated_point));
         draw_clock_texts(element.draw_ctx);
     }
-    draw_new_slice(element);
+    draw_new_slice(element.draw_ctx, element.form_store);
 }
 
 function get_time_array(time_str) {
@@ -68,9 +67,7 @@ function get_angle_from_time(time) {
     return get_angle_on_hour(hour) + get_angle_on_minute(minute);
 }
 
-function draw_new_slice(element) {
-    const form_store = element.form_store;
-    const draw_ctx = element.draw_ctx;
+function draw_new_slice(draw_ctx, form_store) {
     const center = {
         pos_x: 250,
         pos_y: 250,
