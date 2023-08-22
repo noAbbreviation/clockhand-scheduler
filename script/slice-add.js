@@ -20,13 +20,17 @@ function bind_slice_add_form() {
 }
 
 function click_submit_slice_add(event) {
+    const globals = get_globals();
+    
     event.preventDefault();
     
-    const slices = get_globals().slices;
+    const slices = globals.slices;
     slices.push(event.target.context);
     
     const dialog = document.querySelector("dialog#slice-add"); 
     dialog.close();
+
+    render_main_canvas();
 }
 
 
@@ -86,7 +90,6 @@ function draw_new_slice(draw_ctx, form_store) {
 
 function draw_clock_slices(draw_ctx, slices) {
     const global = get_globals().clock_circle_style;
-    if (slices.length === 0) return;
 
     clear_canvas(draw_ctx);
     draw_clock_bg(draw_ctx);

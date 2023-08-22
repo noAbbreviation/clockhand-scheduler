@@ -1,9 +1,9 @@
 window.addEventListener("DOMContentLoaded", () => {
     init_globals();
-    init_submenu_canvases();
-    render_main_canvas();
+    init_canvases();
     bind_slice_add_form();
-
+    render_main_canvas();
+    
     const options = document.querySelectorAll(".content button");
     for (const option of options) {
         option.addEventListener("click", click_option_button);
@@ -19,6 +19,8 @@ function init_globals() {
     const main_container = document.querySelector(".main-container");
     const globals = {};
     
+    globals.main_canvas = {};
+
     globals.clock_circle_style = {
         center: {
             pos_x: 250,
@@ -67,17 +69,21 @@ function click_option_button(event) {
 }
 
 function render_main_canvas() {
-    const main_canvas = document.querySelector("#main-canvas");
-    main_canvas.style["width"] = "100%";
-    main_canvas.style["height"] = "100%";
+    const globals = get_globals(); 
+    const draw_ctx = globals.main_canvas.draw_ctx;
+    const slices = globals.slices;
     
-    if (main_canvas.getContext) {
-        const draw_ctx = main_canvas.getContext("2d");
-        draw_starting_clock(draw_ctx);
-    }
+    draw_clock_slices(draw_ctx, slices);
 }
 
-function init_submenu_canvases() {
+function init_canvases() {
+    const global = get_globals().main_canvas;
+    const main_canvas = document.querySelector("#main-canvas");
+    
+    main_canvas.style["width"] = "100%";
+    main_canvas.style["height"] = "100%";
+    global.draw_ctx = main_canvas.getContext("2d");
+    
     const sub_canvases = document.querySelectorAll("#submenu-canvas");
     for (const sub_canvas of sub_canvases) {
         sub_canvas.style["width"] = "100%";
