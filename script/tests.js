@@ -1,3 +1,13 @@
+const slices_test = [{
+    time_start: "12:00",
+    time_end: "14:00",
+    slice_color: "gray",
+}, {
+    time_start: "15:00",
+    time_end: "16:00",
+    slice_color: "yellow",
+}];
+
 function draw_test(draw_ctx) {
     let rounded_line_style = {
         lineCap: "round",

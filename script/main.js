@@ -54,7 +54,8 @@ function init_globals() {
         }
     };
 
-    globals.slices = [];
+    // test slices, pls remove at prod
+    globals.slices = slices_test;
     
     main_container.context = {};
     main_container.context = globals;

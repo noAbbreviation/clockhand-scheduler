@@ -6,7 +6,12 @@ function init_slice_edit_form() {
     form.context = {};
 
     const edit_select = form.querySelector("select");
-    edit_select.addEventListener("input", (event) => {
+    const starting_options = create_new_edit_options(get_globals().slices);
+    for (const option of starting_options) {
+        edit_select.appendChild(option);
+    }
+
+    edit_select.addEventListener("input", () => {
         const inputs_field = document.querySelector("#slice-edit #inputs-field");
         inputs_field.disabled = false;
     });
@@ -18,4 +23,24 @@ function init_slice_edit_form() {
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
     }
+}
+
+function create_new_edit_options(slices) {
+    const option = document.createElement("option");
+    const options = [];
+
+    option.innerText = "--select a slice--";
+    option.value = "";
+    options.push(option);
+
+    for (let i=0; i<slices.length; i++) {
+        const slice = slices[i];
+
+        const new_option = option.cloneNode();
+        new_option.innerText = `${slice.time_start} to ${slice.time_end}`;
+        new_option.value = i;
+
+        options.push(new_option);
+    }
+    return options;
 }
