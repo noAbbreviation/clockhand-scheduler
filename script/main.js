@@ -1,19 +1,12 @@
 window.addEventListener("DOMContentLoaded", () => {
     init_globals();
     init_canvases();
-    bind_slice_add_form();
+
+    init_option_buttons();
+    init_slice_add_form();
+
     init_download_button();
     render_main_canvas();
-    
-    const options = document.querySelectorAll(".menu ul button");
-    for (const option of options) {
-        option.addEventListener("click", click_option_button);
-        
-        switch (option.id) {
-            case "slice-add-button":
-                option.addEventListener("click", () => {});
-        }
-    }
 });
 
 function init_globals() {
@@ -68,6 +61,13 @@ function init_globals() {
 
 function get_globals() {
     return document.querySelector(".main-container").context;
+}
+
+function init_option_buttons() {
+    const options = document.querySelectorAll(".menu ul button");
+    for (const option of options) {
+        option.addEventListener("click", click_option_button);
+    }
 }
 
 function click_option_button(event) {

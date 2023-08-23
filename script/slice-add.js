@@ -1,4 +1,4 @@
-function bind_slice_add_form() {
+function init_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
     const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
     
