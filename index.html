@@ -14,6 +14,7 @@
   <script src="./script/text-aligning.js" defer></script>
   <script src="./script/drawers.js" defer></script>
   <script src="./script/slice-add.js" defer></script>
+  <script src="./script/slice-edit.js" defer></script>
   <script src="./script/main.js" defer></script>
   <title>Clockhand Scheduler</title>
 </head>
@@ -68,16 +69,17 @@
       
       <dialog id="slice-edit">
         <form id="slice-edit-form">
-          <fieldset>
+          <fieldset id="select-field">
             <legend>Add Slice</legend>
           
             <label for="slice-to-edit">Slice to Edit:</label>
             <select name="slices" id="slice-to-edit">
               <option value="nothing">--Select for edit--</option>
+              <option value="something">ANOTHER ONE</option>
             </select>
           </fieldset>
 
-          <fieldset disabled>
+          <fieldset id="inputs-field" disabled>
             <label for="time_start">Time Start:</label>
             <input type="time" id="time_start"/>
 

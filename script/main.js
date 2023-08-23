@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     init_option_buttons();
     init_slice_add_form();
+    init_slice_edit_form();
 
     init_download_button();
     render_main_canvas();
