@@ -18,7 +18,7 @@ function init_slice_edit_form() {
     
     const edit_inputs = form.querySelectorAll("input");
     for (const input of edit_inputs) {
-        input.addEventListener("input", () => console.log("here"));
+        input.addEventListener("input", input_slice_edit);
 
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
@@ -43,4 +43,17 @@ function create_new_edit_options(slices) {
         options.push(new_option);
     }
     return options;
+}
+
+function input_slice_edit(event) {
+    const element = event.target;
+    const new_value = element.value;
+
+    element.form_store[element.id] = new_value;
+
+    const draw_ctx = element.draw_ctx;
+    const form_store = element.form_store;
+    const slices = get_globals().slices;
+    
+    draw_clock_slices(draw_ctx, slices);
 }
