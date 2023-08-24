@@ -155,8 +155,12 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
     }
 }
 
+function unwrap_parens(string_with_parens) {
+    return string_with_parens.split("(")[1].split(")")[0];
+}
+
 function add_rbg_transparency(rgb_string, opacity = 0.5) {
-    const inner_args = rgb_string.split("(")[1].split(")")[0];
+    const inner_args = unwrap_parens(rgb_string);
 
     return `rgba(${inner_args}, ${opacity})`;
 }
