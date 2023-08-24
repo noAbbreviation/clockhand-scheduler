@@ -24,6 +24,28 @@ function init_slice_edit_form() {
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
     }
+
+    const submit_button = form.querySelector("#slice-edit-submit-button");
+    submit_button.form_context = form.context;
+    submit_button.addEventListener("click", click_submit_slice_edit);
+}
+
+function click_submit_slice_edit(event) {
+    event.preventDefault();
+
+    const element = event.target;
+    const edited_slice = {...element.form_context, selected: false};
+    const slice_index = document.querySelector("#slice-to-edit").value;
+
+    const old_slice = get_globals().slices[slice_index];
+    for (const prop in edited_slice) {
+        old_slice[prop] = edited_slice[prop];
+    }
+
+    const dialog = document.querySelector("dialog#slice-edit"); 
+    dialog.close();
+
+    render_main_canvas();
 }
 
 function create_new_edit_options(slices) {
@@ -84,13 +106,14 @@ function input_select_edit(event) {
         // todo: add reset here too?
     }
     
-    const edit_object = slices[element.slice_index];
+    const current_slice = slices[element.slice_index];
     const form_store = element.form_store;
-    for (const prop in edit_object) {
-        form_store[prop] = edit_object[prop]; 
+    for (const prop in current_slice) {
+        form_store[prop] = current_slice[prop]; 
     }
 
     draw_clock_slices(draw_ctx, slices);
+    draw_new_slice(draw_ctx, form_store);
 }
 
 function input_slice_edit(event) {
@@ -119,7 +142,10 @@ function component_to_hex(component) {
 }
 
 function rgb_to_hex(rgb_string) {
-    const [r, g, b] = unwrap_parens(rgb_string).split(",");
+    if (!rgb_string.includes("rgb")) {
+        return rgb_string;
+    }
 
+    const [r, g, b] = unwrap_parens(rgb_string).split(",");
     return "#" + component_to_hex(r) + component_to_hex(g) + component_to_hex(b);
 }

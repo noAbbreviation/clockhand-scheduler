@@ -166,7 +166,7 @@ function add_rbg_transparency(rgb_string, opacity = 0.5) {
 }
 
 function hex_to_rgb(hex_string) {
-    if (hex_string.indexOf("#") === -1) {
+    if (!hex_string.includes("#")) {
         return hex_string;
     }
 

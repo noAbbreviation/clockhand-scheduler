@@ -1,7 +1,7 @@
 const slices_test = [{
     time_start: "12:00",
     time_end: "14:00",
-    slice_color: "rbg(128,128,128)",
+    slice_color: "rgb(128,128,128)",
     selected: false,
 }, {
     time_start: "15:00",
