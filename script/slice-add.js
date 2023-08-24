@@ -98,7 +98,7 @@ function draw_new_slice(draw_ctx, form_store) {
 
     const colored_inner_stroke = {
         ...slice_style.inner_stroke,
-        strokeStyle: color_to_transparent(form_store.slice_color),
+        strokeStyle: color_to_transparent(form_store.slice_color, 0.1),
     };
 
     const outer_stroke = {...slice_style.outer_stroke};

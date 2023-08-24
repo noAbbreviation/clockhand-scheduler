@@ -56,7 +56,7 @@ function init_globals() {
     };
 
     // test slices, pls remove at prod
-    globals.slices = slices_test;
+    globals.slices = [];
     
     main_container.context = {};
     main_container.context = globals;
@@ -80,6 +80,16 @@ function click_option_button(event) {
     const dialog_id = canvas_names.join("-");
     const dialog = document.querySelector(`#${dialog_id}`);
     dialog.showModal();
+    
+    if (dialog_id === "slice-edit") {
+        const select = document.querySelector("#slice-to-edit");
+        select.textContent = "";
+        
+        const options = create_slice_edit_options(get_globals().slices);
+        for (const option of options) {
+            select.appendChild(option);
+        }
+    }
     
     const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
     const slices = get_globals().slices;

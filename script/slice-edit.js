@@ -9,12 +9,6 @@ function init_slice_edit_form() {
     edit_select.draw_ctx = draw_ctx;
     edit_select.form_store = form.context;
     edit_select.slice_index = -1;
-
-    const starting_options = create_new_edit_options(get_globals().slices);
-    for (const option of starting_options) {
-        edit_select.appendChild(option);
-    }
-
     edit_select.addEventListener("input", input_select_edit);
     
     const edit_inputs = form.querySelectorAll("input");
@@ -48,7 +42,7 @@ function click_submit_slice_edit(event) {
     render_main_canvas();
 }
 
-function create_new_edit_options(slices) {
+function create_slice_edit_options(slices) {
     const option = document.createElement("option");
     const options = [];
 
