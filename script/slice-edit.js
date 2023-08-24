@@ -35,7 +35,7 @@ function click_submit_slice_edit(event) {
     for (const prop in edited_slice) {
         old_slice[prop] = edited_slice[prop];
     }
-    get_globals().slices.sort(time_compare_fn);
+    get_globals().slices.sort(compare_time_fn);
 
     const dialog = document.querySelector("dialog#slice-edit"); 
     dialog.close();
@@ -107,8 +107,7 @@ function input_select_edit(event) {
         form_store[prop] = current_slice[prop]; 
     }
 
-    draw_clock_slices(draw_ctx, slices);
-    draw_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, form_store);
 }
 
 function input_slice_edit(event) {
@@ -118,11 +117,8 @@ function input_slice_edit(event) {
     const form_store = element.form_store;
     form_store[element.id] = new_value;
 
-    const draw_ctx = element.draw_ctx;
-    const slices = get_globals().slices;
-    
-    draw_clock_slices(draw_ctx, slices);
-    draw_new_slice(draw_ctx, form_store);
+    const draw_ctx = element.draw_ctx;    
+    draw_with_new_slice(draw_ctx, form_store);
 }
 
 // solution on github btw

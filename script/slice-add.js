@@ -31,7 +31,6 @@ function click_submit_slice_add(event) {
     const new_slice = {...event.target.context, selected: false};
     slices.push(new_slice);
     slices.sort(compare_time_fn);
-    console.table(slices);
     
     const dialog = document.querySelector("dialog#slice-add"); 
     dialog.close();
@@ -50,7 +49,7 @@ function input_change_slice_add(event) {
     form_store.selected = true;
 
     draw_clock_slices(draw_ctx, slices);
-    draw_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, form_store);
 }
 
 function blur_slice_add(event) {
@@ -61,8 +60,7 @@ function blur_slice_add(event) {
 
     form_store.selected = false;
     
-    draw_clock_slices(draw_ctx, slices);
-    draw_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, form_store);
 }
 
 function get_time_array(time_str) {
@@ -81,7 +79,7 @@ function get_angle_from_time(time) {
     return get_angle_on_hour(hour) + get_angle_on_minute(minute);
 }
 
-function draw_new_slice(draw_ctx, form_store) {
+function draw_with_new_slice(draw_ctx, form_store) {
     if (form_store.time_start === "" || form_store.time_end === "" || form_store.slice_color === "") {
         return;
     }
@@ -99,6 +97,8 @@ function draw_new_slice(draw_ctx, form_store) {
     };
 
     const outer_stroke = {...slice_style.outer_stroke};
+    outer_stroke.fillStyle = lerp_colors(colored_inner_stroke.strokeStyle, lerper_color);
+
     if (form_store.selected) {
         for (let prop in outer_stroke) {
             if (prop === "fillStyle" || prop === "strokeStyle") {
@@ -132,6 +132,7 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
     for (const slice of slices) {
         const start_angle = get_angle_from_time(slice.time_start);
         const end_angle = get_angle_from_time(slice.time_end);
+        const lerped_color = lerp_colors(slice.slice_color, lerper_color);
 
         if (!slice.selected) {
             draw_circle_slice(
@@ -141,7 +142,7 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
                 start_angle,
                 end_angle,
                 {...slice_style.inner_stroke, strokeStyle: slice.slice_color},
-                slice_style.outer_stroke
+                {...slice_style.outer_stroke, fillStyle: lerped_color}
             );
         }
     }

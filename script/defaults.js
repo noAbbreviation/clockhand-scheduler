@@ -16,6 +16,8 @@ const defaults = {
     textBaseline: "bottom",
 }
 
+const lerper_color = "rgb(255,255,255)";
+
 function apply_defaults(draw_ctx) {
     for (const prop in defaults) {
         draw_ctx[prop] = defaults[prop];
@@ -80,4 +82,23 @@ function compare_time_fn(a, b) {
     }
 
     return b_minute - a_minute;
+}
+
+function lerp_colors(from_color, to_color, percent = 0.85) {
+    const color1 = from_color.includes("#") ? hex_to_rgb(from_color) : from_color;
+    const color2 = to_color.includes("#") ? hex_to_rgb(to_color) : to_color;
+
+    const rgb1 = unwrap_parens(color1).split(",");
+    const rgb2 = unwrap_parens(color2).split(",");
+    const lerped_color = [];
+
+    for (let i=0; i<3; i++) {
+        const value1 = Number(rgb1[i]);
+        const value2 = Number(rgb2[i]);
+
+        const buffer = value2 - value1;
+        lerped_color.push(Math.floor(value1 + buffer * Number(percent)));
+    }
+
+    return `rgb(${lerped_color.join(",")})`
 }
