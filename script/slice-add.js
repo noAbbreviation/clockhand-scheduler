@@ -27,7 +27,7 @@ function click_submit_slice_add(event) {
     event.preventDefault();
     
     const slices = globals.slices;
-    const new_slice = {...event.target.context};
+    const new_slice = {...event.target.context, selected: false};
     slices.push(new_slice);
     
     const dialog = document.querySelector("dialog#slice-add"); 
