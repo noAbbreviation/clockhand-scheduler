@@ -7,6 +7,7 @@ function init_slice_edit_form() {
 
     const edit_select = form.querySelector("select");
     edit_select.draw_ctx = draw_ctx;
+    edit_select.form_store = form.context;
     edit_select.slice_index = -1;
 
     const starting_options = create_new_edit_options(get_globals().slices);
@@ -48,7 +49,7 @@ function create_new_edit_options(slices) {
 function input_select_edit(event) {
     const inputs_field = document.querySelector("#slice-edit #inputs-field");
     inputs_field.disabled = false;
-
+    
     const element = event.target;
     const draw_ctx = element.draw_ctx;
     
@@ -67,6 +68,13 @@ function input_select_edit(event) {
         slices[slice_index].selected = false;
     }
     
+    const edit_object = slices[element.slice_index];
+    const form_store = element.form_store;
+    for (const prop in edit_object) {
+        form_store[prop] = edit_object[prop]; 
+    }
+    console.log(form_store);
+
     draw_clock_slices(draw_ctx, slices);
 }
 
