@@ -14,6 +14,7 @@ function init_slice_add_form() {
         form.context[input.id] = input.value; 
     }
     form.context.selected = true;
+    console.log(form.context);
 
     const submit_button = document.querySelector("#slice-add-submit-button");
     submit_button.addEventListener("click", click_submit_slice_add);        
@@ -88,9 +89,11 @@ function draw_new_slice(draw_ctx, form_store) {
     };
 
     const outer_stroke = {...slice_style.outer_stroke};
-    for (let prop in outer_stroke) {
-        if (form_store.selected && (prop === "fillStyle" || prop === "strokeStyle")) {
-            outer_stroke[prop] = color_to_transparent(outer_stroke[prop]);
+    if (form_store.selected) {
+        for (let prop in outer_stroke) {
+            if (prop === "fillStyle" || prop === "strokeStyle") {
+                outer_stroke[prop] = color_to_transparent(outer_stroke[prop]);
+            }
         }
     }
 
