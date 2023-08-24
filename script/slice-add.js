@@ -8,24 +8,23 @@ function init_slice_add_form() {
     const form_inputs = form.querySelectorAll("input");
     for (const input of form_inputs) {
         input.addEventListener("input", input_change_slice_add);
+        input.addEventListener("blur", blur_slice_add);
         
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
         form.context[input.id] = input.value; 
     }
     form.context.selected = true;
-    console.log(form.context);
 
     const submit_button = document.querySelector("#slice-add-submit-button");
-    submit_button.addEventListener("click", click_submit_slice_add);        
+    submit_button.addEventListener("click", click_submit_slice_add);
     submit_button.context = form.context;
 }
 
 function click_submit_slice_add(event) {
-    const globals = get_globals();
-    
     event.preventDefault();
-    
+
+    const globals = get_globals();
     const slices = globals.slices;
     const new_slice = {...event.target.context, selected: false};
     slices.push(new_slice);
@@ -51,6 +50,18 @@ function input_change_slice_add(event) {
         form_store.selected = false;
     }
 
+    draw_clock_slices(draw_ctx, slices);
+    draw_new_slice(draw_ctx, form_store);
+}
+
+function blur_slice_add(event) {
+    const element = event.target;
+    const draw_ctx = element.draw_ctx;
+    const form_store = element.form_store;
+    const slices = get_globals().slices;
+
+    form_store.selected = false;
+    
     draw_clock_slices(draw_ctx, slices);
     draw_new_slice(draw_ctx, form_store);
 }
