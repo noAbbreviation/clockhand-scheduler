@@ -35,6 +35,7 @@ function click_submit_slice_edit(event) {
     for (const prop in edited_slice) {
         old_slice[prop] = edited_slice[prop];
     }
+    get_globals().slices.sort(time_compare_fn);
 
     const dialog = document.querySelector("dialog#slice-edit"); 
     dialog.close();

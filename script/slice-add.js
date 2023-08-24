@@ -30,6 +30,8 @@ function click_submit_slice_add(event) {
     const slices = globals.slices;
     const new_slice = {...event.target.context, selected: false};
     slices.push(new_slice);
+    slices.sort(compare_time_fn);
+    console.table(slices);
     
     const dialog = document.querySelector("dialog#slice-add"); 
     dialog.close();
@@ -45,12 +47,7 @@ function input_change_slice_add(event) {
     const slices = get_globals().slices;
 
     form_store[element.id] = new_value;
-
-    if (new_value.includes(":")) {
-        form_store.selected = true;
-    } else {
-        form_store.selected = false;
-    }
+    form_store.selected = true;
 
     draw_clock_slices(draw_ctx, slices);
     draw_new_slice(draw_ctx, form_store);

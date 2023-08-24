@@ -66,3 +66,18 @@ function draw_clock_texts(draw_ctx) {
         }, global.clock_text_style);
     }
 }
+
+// TODO: Add more extensive comparison
+function compare_time_fn(a, b) {
+    let [a_hour, a_minute] = get_time_array(a.time_start);
+    let [b_hour, b_minute] = get_time_array(b.time_start);
+
+    a_hour = Math.abs(a_hour - 6) % 12;
+    b_hour = Math.abs(b_hour - 6) % 12;
+
+    if (a_hour !== b_hour) {
+        return b_hour - a_hour;
+    }
+
+    return b_minute - a_minute;
+}
