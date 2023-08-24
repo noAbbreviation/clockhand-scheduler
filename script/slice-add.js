@@ -84,13 +84,13 @@ function draw_new_slice(draw_ctx, form_store) {
 
     const colored_inner_stroke = {
         ...slice_style.inner_stroke,
-        strokeStyle: add_rbg_transparency(hex_to_rgb(form_store.slice_color)),
+        strokeStyle: color_to_transparent(form_store.slice_color),
     };
 
     const outer_stroke = {...slice_style.outer_stroke};
     for (let prop in outer_stroke) {
         if (form_store.selected && (prop === "fillStyle" || prop === "strokeStyle")) {
-            outer_stroke[prop] = add_rbg_transparency(hex_to_rgb(outer_stroke[prop]));
+            outer_stroke[prop] = color_to_transparent(outer_stroke[prop]);
         }
     }
 
@@ -161,4 +161,8 @@ function hex_to_rgb(hex_string) {
     const blue = parseInt(b, 16);
 
     return `rgb(${red},${green},${blue})`;
+}
+
+function color_to_transparent(color_string, opacity = 0.5) {
+    return add_rbg_transparency(hex_to_rgb(color_string, opacity));
 }
