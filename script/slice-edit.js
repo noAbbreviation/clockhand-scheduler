@@ -6,15 +6,15 @@ function init_slice_edit_form() {
     form.context = {};
 
     const edit_select = form.querySelector("select");
+    edit_select.draw_ctx = draw_ctx;
+    edit_select.slice_index = -1;
+
     const starting_options = create_new_edit_options(get_globals().slices);
     for (const option of starting_options) {
         edit_select.appendChild(option);
     }
 
-    edit_select.addEventListener("input", () => {
-        const inputs_field = document.querySelector("#slice-edit #inputs-field");
-        inputs_field.disabled = false;
-    });
+    edit_select.addEventListener("input", input_select_edit);
     
     const edit_inputs = form.querySelectorAll("input");
     for (const input of edit_inputs) {
@@ -43,6 +43,31 @@ function create_new_edit_options(slices) {
         options.push(new_option);
     }
     return options;
+}
+
+function input_select_edit(event) {
+    const inputs_field = document.querySelector("#slice-edit #inputs-field");
+    inputs_field.disabled = false;
+
+    const element = event.target;
+    const draw_ctx = element.draw_ctx;
+    
+    const slices = get_globals().slices;
+    const selected_value = element.value;
+    let slice_index = element.slice_index;
+    
+    if (selected_value !== "") {
+        if (element.slice_index !== -1) {
+            slices[slice_index].selected = false;
+        }
+
+        element.slice_index = selected_value;
+        slices[element.slice_index].selected = true;
+    } else if (slice_index !== -1) {
+        slices[slice_index].selected = false;
+    }
+    
+    draw_clock_slices(draw_ctx, slices);
 }
 
 function input_slice_edit(event) {
