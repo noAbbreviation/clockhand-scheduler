@@ -51,17 +51,7 @@ function init_globals() {
         outer_stroke: {
             lineWidth: "6",
             strokeStyle: "rgb(253, 255, 240)",
-        }
-    };
-
-    globals.selected_slice_style = {
-        inner_stroke: {
-            lineWidth: "3",
-        },
-        outer_stroke: {
-            lineWidth: "6",
-            fillStyle: "rgb(227, 245, 253)",
-            strokeStyle: "rgb(253, 255, 240)",
+            fillStyle: "rgb(253, 253, 253)",
         }
     };
 
