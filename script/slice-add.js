@@ -88,15 +88,15 @@ function draw_new_slice(draw_ctx, form_store) {
 
     const colored_inner_stroke = {
         ...slice_style.inner_stroke,
-        strokeStyle: form_store.slice_color,
+        strokeStyle: add_rbg_transparency(hex_to_rgb(form_store.slice_color)),
     };
 
     const outer_stroke = {...slice_style.outer_stroke};
-    // for (let prop in outer_stroke) {
-    //     if (form_store.selected && (prop === "fillStyle" || prop === "strokeStyle")) {
-    //         outer_stroke[prop] = add_rbg_transparency(outer_stroke[prop]);
-    //     }
-    // }
+    for (let prop in outer_stroke) {
+        if (form_store.selected && (prop === "fillStyle" || prop === "strokeStyle")) {
+            outer_stroke[prop] = add_rbg_transparency(hex_to_rgb(outer_stroke[prop]));
+        }
+    }
 
     draw_clock_slices(draw_ctx, current_slices, true);
     draw_circle_slice(
@@ -145,4 +145,22 @@ function add_rbg_transparency(rgb_string, opacity = 0.5) {
     const inner_args = rgb_string.split("(")[1].split(")")[0];
 
     return `rgba(${inner_args}, ${opacity})`;
+}
+
+function hex_to_rgb(hex_string) {
+    if (hex_string.indexOf("#") === -1) {
+        return hex_string;
+    }
+
+    const numbers = hex_string.split("#")[1];
+    const SLICE_LENGTH = 2;
+
+    const [r, gb] = [numbers.slice(0,SLICE_LENGTH), numbers.slice(SLICE_LENGTH)];
+    const [g, b] = [gb.slice(0,SLICE_LENGTH), gb.slice(SLICE_LENGTH)];
+
+    const red = parseInt(r, 16);
+    const green = parseInt(g, 16);
+    const blue = parseInt(b, 16);
+
+    return `rgb(${red},${green},${blue})`;
 }
