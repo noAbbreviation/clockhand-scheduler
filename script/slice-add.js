@@ -13,7 +13,7 @@ function init_slice_add_form() {
         input.form_store = form.context;
         form.context[input.id] = input.value; 
     }
-    form.context.selected = false;
+    form.context.selected = true;
 
     const submit_button = document.querySelector("#slice-add-submit-button");
     submit_button.addEventListener("click", click_submit_slice_add);        
@@ -81,10 +81,22 @@ function draw_new_slice(draw_ctx, form_store) {
     const globals = get_globals();
     const current_slices = globals.slices;
     const clock_style = globals.clock_circle_style;
-    const slice_style = globals.clock_slices_style;
+    const slice_style = globals.selected_slice_style;
     
     const start_angle = get_angle_from_time(form_store.time_start);
     const end_angle = get_angle_from_time(form_store.time_end);
+
+    const colored_inner_stroke = {
+        ...slice_style.inner_stroke,
+        strokeStyle: form_store.slice_color,
+    };
+
+    const outer_stroke = {...slice_style.outer_stroke};
+    // for (let prop in outer_stroke) {
+    //     if (form_store.selected && (prop === "fillStyle" || prop === "strokeStyle")) {
+    //         outer_stroke[prop] = add_rbg_transparency(outer_stroke[prop]);
+    //     }
+    // }
 
     draw_clock_slices(draw_ctx, current_slices, true);
     draw_circle_slice(
@@ -93,8 +105,8 @@ function draw_new_slice(draw_ctx, form_store) {
         clock_style.circle_radius,
         start_angle,
         end_angle,
-        {...slice_style.inner_stroke, strokeStyle: form_store.slice_color},
-        slice_style.outer_stroke
+        colored_inner_stroke,
+        outer_stroke,
     );
     draw_clock_dot(draw_ctx);
 
@@ -127,4 +139,10 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
     if (!remove_text_flag) {
         draw_clock_texts(draw_ctx);
     }
+}
+
+function add_rbg_transparency(rgb_string, opacity = 0.5) {
+    const inner_args = rgb_string.split("(")[1].split(")")[0];
+
+    return `rgba(${inner_args}, ${opacity})`;
 }

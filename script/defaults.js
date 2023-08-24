@@ -10,8 +10,8 @@ const defaults = {
     
     lineWidth: "2",
     font: "2.5em monospace",
-    fillStyle: "white",
-    strokeStyle: "black",
+    fillStyle: "rgb(255,255,255)",
+    strokeStyle: "rgb(0,0,0)",
     textAlign: "left",
     textBaseline: "bottom",
 }

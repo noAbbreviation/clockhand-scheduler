@@ -54,6 +54,17 @@ function init_globals() {
         }
     };
 
+    globals.selected_slice_style = {
+        inner_stroke: {
+            lineWidth: "3",
+        },
+        outer_stroke: {
+            lineWidth: "6",
+            fillStyle: "rgb(227, 245, 253)",
+            strokeStyle: "rgb(253, 255, 240)",
+        }
+    };
+
     // test slices, pls remove at prod
     globals.slices = slices_test;
     
