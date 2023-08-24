@@ -9,6 +9,8 @@ function init_slice_add_form() {
     for (const input of form_inputs) {
         input.addEventListener("input", input_change_slice_add);
         input.addEventListener("blur", blur_slice_add);
+        input.addEventListener("focusin", () => {}); // TODO!: Add triggers here (for selected)
+        input.addEventListener("focusout", () => {}); // TODO!
         
         input.draw_ctx = draw_ctx;
         input.form_store = form.context;
