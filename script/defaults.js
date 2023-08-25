@@ -16,7 +16,7 @@ const defaults = {
     textBaseline: "bottom",
 }
 
-const lerper_color = "rgb(255,255,255)";
+const base_color = "rgb(255,255,255)";
 
 function apply_defaults(draw_ctx) {
     for (const prop in defaults) {

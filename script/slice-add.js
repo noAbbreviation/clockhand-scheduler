@@ -96,15 +96,12 @@ function draw_with_new_slice(draw_ctx, form_store) {
         strokeStyle: color_to_transparent(form_store.slice_color, 0.1),
     };
 
-    const outer_stroke = {...slice_style.outer_stroke};
-    outer_stroke.fillStyle = lerp_colors(colored_inner_stroke.strokeStyle, lerper_color);
+    const outer_stroke = {...defaults, ...slice_style.outer_stroke};
+    outer_stroke.fillStyle = lerp_colors(colored_inner_stroke.strokeStyle, base_color);
 
     if (form_store.selected) {
-        for (let prop in outer_stroke) {
-            if (prop === "fillStyle" || prop === "strokeStyle") {
-                outer_stroke[prop] = color_to_transparent(outer_stroke[prop]);
-            }
-        }
+        outer_stroke.fillStyle = color_to_transparent(outer_stroke.fillStyle);
+        outer_stroke.strokeStyle = color_to_transparent(outer_stroke.strokeStyle);
     }
 
     draw_clock_slices(draw_ctx, current_slices, true);
@@ -122,7 +119,7 @@ function draw_with_new_slice(draw_ctx, form_store) {
     draw_clock_texts(draw_ctx);
 }
 
-function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
+function draw_clock_slices(draw_ctx, slices, remove_text_flag = false) {
     const globals = get_globals();
     const global = globals.clock_circle_style;
     const slice_style = globals.clock_slices_style;
@@ -132,7 +129,7 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag) {
     for (const slice of slices) {
         const start_angle = get_angle_from_time(slice.time_start);
         const end_angle = get_angle_from_time(slice.time_end);
-        const lerped_color = lerp_colors(slice.slice_color, lerper_color);
+        const lerped_color = lerp_colors(slice.slice_color, base_color);
 
         if (!slice.selected) {
             draw_circle_slice(
