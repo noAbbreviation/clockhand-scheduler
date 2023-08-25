@@ -1,3 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(245, 252, 241);
+}
+
+.main-container {
+    display: flex;
+    flex: none;
+    width: 80vw;
+    height: 90vh;
+    background-color: white;
+    border: .25rem solid gray;
+    border-radius: 1rem;
+}
+
+.options li {
+    list-style: none;
+}
+
 .main-canvas,
 .submenu-canvas {
     width: 500px;
