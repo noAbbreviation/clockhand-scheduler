@@ -9,12 +9,34 @@ body {
 
 .main-container {
     display: flex;
-    flex: none;
+    flex-direction: column;
     width: 80vw;
     height: 90vh;
     background-color: white;
     border: .25rem solid gray;
     border-radius: 1rem;
+}
+
+.title {
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-basis: 100%;
+    flex: none;
+    height: 100%;
+}
+
+.sidebar {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    width: 20vw;
+}
+
+.main-canvas {
+    margin-left: auto;
 }
 
 .options li {
