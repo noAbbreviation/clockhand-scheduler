@@ -22,6 +22,10 @@ function init_slice_edit_form() {
     const submit_button = form.querySelector("#slice-edit-submit-button");
     submit_button.form_context = form.context;
     submit_button.addEventListener("click", click_submit_slice_edit);
+
+    const delete_button = form.querySelector("#slice-delete-submit-button");
+    delete_button.form_context = form.context;
+    delete_button.addEventListener("click", click_submit_slice_delete);
 }
 
 function click_submit_slice_edit(event) {
@@ -40,6 +44,23 @@ function click_submit_slice_edit(event) {
     const dialog = document.querySelector("dialog#slice-edit"); 
     dialog.close();
 
+    render_main_canvas();
+}
+
+function click_submit_slice_delete(event) {
+    event.preventDefault();
+    
+    if (!confirm("Are you sure you want to delete the selected slice?")) {
+        return;
+    }
+
+    const slice_index = document.querySelector("#slice-to-edit").value;
+    const slices = get_globals().slices;  
+    slices.splice(slice_index, 1);
+    
+    const dialog = document.querySelector("dialog#slice-edit"); 
+    dialog.close();
+    
     render_main_canvas();
 }
 

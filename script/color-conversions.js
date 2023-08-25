@@ -13,12 +13,10 @@ function hex_to_rgb(hex_string) {
     if (!hex_string.includes("#")) {
         return hex_string;
     }
-
-    const numbers = hex_string.split("#")[1];
+    
     const SLICE_LENGTH = 2;
-
-    const [r, gb] = [numbers.slice(0,SLICE_LENGTH), numbers.slice(SLICE_LENGTH)];
-    const [g, b] = [gb.slice(0,SLICE_LENGTH), gb.slice(SLICE_LENGTH)];
+    const numbers = hex_string.split("#")[1];
+    const [r, g, b] = [numbers.slice(0,SLICE_LENGTH), numbers.slice(SLICE_LENGTH, -SLICE_LENGTH), numbers.slice(-SLICE_LENGTH)];
 
     const red = parseInt(r, 16);
     const green = parseInt(g, 16);

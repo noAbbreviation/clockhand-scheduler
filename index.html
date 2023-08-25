@@ -29,13 +29,12 @@
         <div class="options">
           <ul>
             <li> <button id="slice-add-button">Add a slice</button> </li>
-            <li> <button id="slice-edit-button" >Edit a slice</button> </li>
-            <li> <button id="slice-remove-button">Remove a slice</button> </li>
+            <li> <button id="slice-edit-button" >Edit or Delete a slice</button> </li>
           </ul>
           <button id="download-canvas-button">Download the canvas</button>
           <a id="download-loader" style="display: none;"></a>
         </div>
-        
+
         <div class="colors"> <!-- TODO: Add named colors ui here--> </div>
       </div>
 
@@ -93,26 +92,8 @@
             <input type="color" id="slice_color"/>
 
             <button id="slice-edit-submit-button">Edit Slice</button>
+            <button id="slice-delete-submit-button">Delete Slice</button>
           </fieldset>  
-        </form>
-
-        <div class="submenu-canvas">
-          <canvas id="submenu-canvas" width="500" height="500"></canvas>
-        </div>
-      </dialog>
-
-      <dialog id="slice-remove">
-        <form id="slice-remove-form">
-          <fieldset>
-            <legend>Slice to remove</legend>
-  
-            <label for="slice-to-remove"></label>
-            <select name="slices" id="slice-to-remove">
-              <option value="nothing">--Select for edit--</option>
-            </select>
-  
-            <button id="slice-remove-submit-button">Remove Slice</button>
-          </fieldset>
         </form>
         
         <div class="submenu-canvas">
