@@ -90,38 +90,6 @@ function draw_line(
     draw_ctx.stroke();
 }
 
-function rotate_point(
-    point = {
-        pos_x: 10,
-        pos_y: 10,
-    },
-    radius,
-    angle,
-) {
-    const x_offset = radius * Math.cos(angle);
-    const y_offset = radius * Math.sin(angle);
-
-    return {
-        pos_x: point.pos_x + x_offset,
-        pos_y: point.pos_y + y_offset,
-    };
-}
-
-function combine_points(point1 = {
-    pos_x: 10,
-    pos_y: 10,
-}, point2 = {
-    pos_x: 20,
-    pos_y: 20,
-}) {
-    return {
-        pos_x1: point1.pos_x,
-        pos_y1: point1.pos_y,
-        pos_x2: point2.pos_x,
-        pos_y2: point2.pos_y,
-    };
-}
-
 function draw_circle_slice(
     draw_ctx,
     center = {
