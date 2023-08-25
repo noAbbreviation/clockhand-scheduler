@@ -26,6 +26,8 @@ function draw_clock_text(
         textBaseline: "middle",
     }
 ) {
+    const HEIGHT_FIX_RATIO = 3/2;
+
     const box = get_text_bounding_box(draw_ctx, text, style.font);
     const text_center = {
         width: box.width/2,
@@ -37,7 +39,7 @@ function draw_clock_text(
 
     rotated_point = {
         pos_x: rotated_point.pos_x - text_center.width,
-        pos_y: rotated_point.pos_y + text_center.height,
+        pos_y: rotated_point.pos_y + text_center.height * HEIGHT_FIX_RATIO,
     };
 
     draw_text(draw_ctx, text, rotated_point, style);

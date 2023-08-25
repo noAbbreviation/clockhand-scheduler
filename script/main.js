@@ -67,7 +67,7 @@ function get_globals() {
 }
 
 function init_option_buttons() {
-    const options = document.querySelectorAll(".menu ul button");
+    const options = document.querySelectorAll(".sidebar ul button");
     for (const option of options) {
         option.addEventListener("click", click_option_button);
     }
