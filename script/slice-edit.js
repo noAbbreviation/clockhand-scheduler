@@ -120,23 +120,3 @@ function input_slice_edit(event) {
     const draw_ctx = element.draw_ctx;    
     draw_with_new_slice(draw_ctx, form_store);
 }
-
-// solution on github btw
-// Question title: `RGB to hex and hex to RGB`
-function component_to_hex(component) {
-    let hex = Number(component).toString(16);
-    
-    if (hex.length === 1) {
-        hex = "0" + hex;
-    }
-    return hex;
-}
-
-function rgb_to_hex(rgb_string) {
-    if (!rgb_string.includes("rgb")) {
-        return rgb_string;
-    }
-
-    const [r, g, b] = unwrap_parens(rgb_string).split(",");
-    return "#" + component_to_hex(r) + component_to_hex(g) + component_to_hex(b);
-}
