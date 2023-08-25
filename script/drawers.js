@@ -14,10 +14,7 @@ function draw_rect(
         lineJoin: "round",
     }
 ) {
-    apply_defaults(draw_ctx);
-    for (const style_prop in style) {
-        draw_ctx[style_prop] = style[style_prop];
-    }
+    apply_with_defaults(draw_ctx, style);
 
     draw_ctx.fillRect(dimensions.pos_x, dimensions.pos_y, dimensions.width, dimensions.height);
 }
@@ -36,10 +33,7 @@ function draw_text(
         fillStyle: "rgb(255,255,255)",
     }
 ) {
-    apply_defaults(draw_ctx);
-    for (const style_prop in style) {
-        draw_ctx[style_prop] = style[style_prop];
-    }
+    apply_with_defaults(draw_ctx, style);
     
     draw_ctx.beginPath();
     draw_ctx.fillText(text, dimensions.pos_x, dimensions.pos_y);
@@ -57,10 +51,7 @@ function draw_circle(
         strokeStyle: "rgb(0,0,0)",
     }
 ) {
-    apply_defaults(draw_ctx);
-    for (const style_prop in style) {
-        draw_ctx[style_prop] = style[style_prop];
-    }
+    apply_with_defaults(draw_ctx, style);
 
     draw_ctx.beginPath();
     draw_ctx.ellipse(
@@ -91,10 +82,7 @@ function draw_line(
         strokeStyle: "rgb(0,0,0)",
     }
 ) {
-    apply_defaults(draw_ctx);
-    for (const style_prop in style) {
-        draw_ctx[style_prop] = style[style_prop];
-    }
+    apply_with_defaults(draw_ctx, style);
     
     draw_ctx.beginPath();
     draw_ctx.moveTo(dimensions.pos_x1, dimensions.pos_y1);
@@ -152,11 +140,9 @@ function draw_circle_slice(
     },
     outer_stroke_style = {},
 ) {
-    apply_defaults(draw_ctx);
     const fallback_style = {...inner_stroke_style, ...outer_stroke_style};
-    for (const style_prop in fallback_style) {
-        draw_ctx[style_prop] = outer_stroke_style[style_prop];
-    }
+    apply_with_defaults(draw_ctx, fallback_style);
+
     const start_point = rotate_point(center, radius, start_angle);
     
     draw_ctx.beginPath();
@@ -168,9 +154,6 @@ function draw_circle_slice(
     draw_ctx.stroke();
     draw_ctx.fill();
     
-    apply_defaults(draw_ctx);
-    for (const style_prop in inner_stroke_style) {
-        draw_ctx[style_prop] = inner_stroke_style[style_prop];
-    }
+    apply_with_defaults(draw_ctx, inner_stroke_style);
     draw_ctx.stroke();
 }

@@ -18,9 +18,12 @@ const defaults = {
 
 const base_color = "rgb(255,255,255)";
 
-function apply_defaults(draw_ctx) {
+function apply_with_defaults(draw_ctx, style) {
     for (const prop in defaults) {
         draw_ctx[prop] = defaults[prop];
+    }
+    for (const prop in style) {
+        draw_ctx[prop] = style[prop];
     }
 }
 
