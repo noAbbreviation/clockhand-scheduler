@@ -10,6 +10,17 @@ window.addEventListener("DOMContentLoaded", () => {
     render_main_canvas();
 });
 
+window.addEventListener("resize", () => {
+    const canvas_container = document.querySelector(".main-canvas");
+    canvas_container.style["height"] = "100%";
+    canvas_container.style["width"] = getComputedStyle(canvas_container).height;
+    
+    const main_canvas = document.querySelector("#main-canvas");
+    main_canvas.style["width"] = "100%";
+    main_canvas.style["height"] = "100%";
+    render_main_canvas();
+});
+
 function init_globals() {
     const main_container = document.querySelector(".main-container");
     
@@ -62,9 +73,6 @@ function render_main_canvas() {
 function init_canvases() {
     const global = get_globals().main_canvas;
     const main_canvas = document.querySelector("#main-canvas");
-    
-    main_canvas.style["width"] = "100%";
-    main_canvas.style["height"] = "100%";
     global.draw_ctx = main_canvas.getContext("2d");
     
     const sub_canvases = document.querySelectorAll("#submenu-canvas");
