@@ -10,16 +10,26 @@ window.addEventListener("DOMContentLoaded", () => {
     render_main_canvas();
 });
 
-window.addEventListener("resize", () => {
+window.addEventListener("resize", resize_window);
+
+function resize_window() {
     const canvas_container = document.querySelector(".main-canvas");
     canvas_container.style["height"] = "100%";
-    canvas_container.style["width"] = getComputedStyle(canvas_container).height;
+    canvas_container.style["width"] = "100%";
+    
+    const dimensions = getComputedStyle(canvas_container);
+    const [width, height] = [dimensions.width, dimensions.height];
+    if (width < height) {
+        canvas_container.style["height"] = width;
+    } else {
+        canvas_container.style["width"] = height;
+    }
     
     const main_canvas = document.querySelector("#main-canvas");
     main_canvas.style["width"] = "100%";
     main_canvas.style["height"] = "100%";
     render_main_canvas();
-});
+}
 
 function init_globals() {
     const main_container = document.querySelector(".main-container");
@@ -80,6 +90,8 @@ function init_canvases() {
         sub_canvas.style["width"] = "100%";
         sub_canvas.style["height"] = "100%";
     }
+
+    resize_window();
 }
 
 function init_download_button() {
