@@ -10,19 +10,15 @@ body {
 .main-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 80vw;
-    height: 80vh;
+    height: 95vh;
 }
 
 .content {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 80vw;
+    width: 100%;
     height: 80vh;
-    padding: 1rem;
-    background-color: white;
-    border: .25rem solid gray;
     border-radius: 0 0 1rem 1rem;
 }
 
@@ -43,20 +39,34 @@ body {
 
 .sidebar {
     display: flex;
-    flex: none;
     flex-direction: column;
+    align-items: center;
+    flex: none;
     width: 20vw;
+    height: 100%;
+    background-color: rgb(196, 149, 240);
+    border: 0.25rem solid gray;
+    border-bottom-left-radius: 1rem;
 }
 
 .options li {
     list-style: none;
 }
 
+.main-content {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: antiquewhite;
+    border: 0.25rem solid gray;
+    border-left: none;
+}
+
 .main-canvas,
 .submenu-canvas {
-    /* width: 500px;
-    height: 500px; */
-    background-color: antiquewhite;
+    margin: 0 auto;
 }
 
 .submenu-canvas {
