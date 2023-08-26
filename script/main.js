@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     init_slice_edit_form();
 
     init_download_button();
-    render_main_canvas();
+    resize_window();
 });
 
 window.addEventListener("resize", resize_window);
@@ -47,6 +47,17 @@ function init_option_buttons() {
     for (const option of options) {
         option.addEventListener("click", click_option_button);
     }
+
+    const slice_edit = document.querySelector("#slice-edit-button");
+    slice_edit.addEventListener("click", () => {
+        const select = document.querySelector("#slice-to-edit");
+        select.textContent = "";
+        
+        const options = create_slice_edit_options(get_globals().slices);
+        for (const option of options) {
+            select.appendChild(option);
+        }
+    });
 }
 
 function click_option_button(event) {
@@ -56,16 +67,6 @@ function click_option_button(event) {
     const dialog_id = canvas_names.join("-");
     const dialog = document.querySelector(`#${dialog_id}`);
     dialog.showModal();
-    
-    if (dialog_id === "slice-edit") {
-        const select = document.querySelector("#slice-to-edit");
-        select.textContent = "";
-        
-        const options = create_slice_edit_options(get_globals().slices);
-        for (const option of options) {
-            select.appendChild(option);
-        }
-    }
     
     const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
     const slices = get_globals().slices;
