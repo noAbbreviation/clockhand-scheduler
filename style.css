@@ -1,3 +1,7 @@
+:root {
+    --container-border-radius: 1rem;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -8,41 +12,40 @@ body {
 }
 
 .main-container {
+    box-shadow: 0 0 0.75rem rgb(192, 192, 192);
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 80vw;
-    height: 95vh;
+    border-radius: var(--container-border-radius);
 }
 
 .content {
     display: flex;
     width: 100%;
     height: 80vh;
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 var(--container-border-radius) var(--container-border-radius);
 }
 
 .title {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1.25rem;
+    padding: 1rem;
     width: 100%;
-    height: 7.5vh;
+    height: 8vh;
     background: rgb(200, 231, 241);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-transform: uppercase;
     border: .25rem solid gray;
     border-bottom: none;
-    border-radius: 1.5rem 1.5rem 0 0;
+    border-radius: var(--container-border-radius) var(--container-border-radius) 0 0;
     font-size: 1.75rem;
 }
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     flex: none;
-    gap: 2rem;
     padding: 1.25rem;
     width: 20vw;
     height: 100%;
@@ -60,7 +63,7 @@ body {
 }
 
 .options {
-    height: 100%;
+    margin-top: 2rem;
     flex: 1;
 }
 
@@ -105,6 +108,7 @@ body {
     background-color: antiquewhite;
     border: 0.25rem solid gray;
     border-left: none;
+    border-bottom-right-radius: var(--container-border-radius);
 }
 
 .main-canvas,
