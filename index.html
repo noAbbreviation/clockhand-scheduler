@@ -57,25 +57,33 @@
 
     <div class="popups">
       <dialog id="slice-add">
-        <form id="slice-add-form">
-          <fieldset>
-            <legend>Add Slice</legend>
+        <div class="dialog-container">
+          <form id="slice-add-form">
+            <fieldset>
+              <legend>Add Slice</legend>
 
-            <label for="time_start">Time Start:</label>
-            <input type="time" id="time_start" value="13:00"/>
+              <div class="input-wrapper">
+                <label for="time_start">Time Start:</label>
+                <input type="time" id="time_start" value="13:00"/>
+              </div>
 
-            <label for="time_end">Time End:</label>
-            <input type="time" id="time_end" value="15:00"/>
+              <div class="input-wrapper">
+                <label for="time_end">Time End:</label>
+                <input type="time" id="time_end" value="15:00"/>
+              </div>
 
-            <label for="slice_color">Color of Slice:</label>
-            <input type="color" id="slice_color"/>
-
-            <button id="slice-add-submit-button">Add Slice</button>
-          </fieldset>
-        </form>
-
-        <div class="submenu-canvas">
-          <canvas id="submenu-canvas" width="500" height="500"></canvas>
+              <div class="input-wrapper">
+                <label for="slice_color">Color of Slice:</label>
+                <input type="color" id="slice_color"/>
+              </div>
+  
+              <button id="slice-add-submit-button">Add Slice</button>
+            </fieldset>
+          </form>
+  
+          <div class="submenu-canvas">
+            <canvas id="submenu-canvas" width="500" height="500"></canvas>
+          </div>
         </div>
       </dialog>
       

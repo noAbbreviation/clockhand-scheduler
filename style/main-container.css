@@ -36,7 +36,7 @@ body {
     background: rgb(200, 231, 241);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-transform: uppercase;
-    border: .25rem solid gray;
+    border: 0.25rem solid gray;
     border-bottom: none;
     border-radius: var(--container-border-radius) var(--container-border-radius) 0 0;
     font-size: 1.75rem;
@@ -114,8 +114,4 @@ body {
 .main-canvas,
 .submenu-canvas {
     margin: 0 auto;
-}
-
-.submenu-canvas {
-    background-color: rgb(239, 250, 179);
 }

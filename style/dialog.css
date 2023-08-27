@@ -1,3 +1,82 @@
 dialog {
     margin: auto;
+    border: 0.25rem solid rgb(82, 82, 82);
+    border-radius: 1rem;
+}
+
+.dialog-container {
+    background-color: rgb(243, 240, 217);
+    display: flex;
+    align-items: center;
+    gap: 5vh;
+    padding: 4vh;
+}
+
+form {
+    width: 30vw;
+    height: 100%;
+}
+
+#slice-add-form legend {
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0 1rem;
+    padding: 0.4rem;
+    border: 0.2rem solid gray;
+    border-radius: 0.75rem;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem;
+    gap: 2rem;
+    background-color: aliceblue;
+    border: 0.2rem solid gray;
+    border-radius: 0.5rem;
+}
+
+label {
+    color: black;
+    text-shadow: 0 0.1rem 0.1rem 0.1rem gray;
+    font-size: 1.25rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+input {
+    padding: 0.2rem;
+    background-color: white;
+    border: 0.15rem solid black;
+}
+
+input[type="time"] {
+    border-radius: 0.5rem;
+}
+
+input[type="color"] {
+    border-radius: 0.25rem;
+}
+
+#slice-add-submit-button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    border: 0.15rem solid gray;
+    box-shadow: 0 0 0.25rem rgb(204, 204, 204);
+}
+
+.submenu-canvas {
+    width: 30vw;
+    height: 30vw;
+    background-color: rgb(255, 205, 139);
+    border: 0.25rem solid gray;
+    border-radius: 2rem;
+    box-shadow: 0 0 0.75rem rgb(0, 0, 0);
 }
