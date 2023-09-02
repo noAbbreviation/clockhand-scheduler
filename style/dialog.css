@@ -71,7 +71,8 @@ input[type="color"] {
 
 #slice-add-submit-button,
 #slice-edit-submit-button,
-#slice-delete-submit-button {
+#slice-delete-submit-button,
+#cancel-button {
     font-size: 1rem;
     padding: 0.5rem;
     border-radius: 0.75rem;
@@ -91,6 +92,10 @@ input[type="color"] {
     background-color: rgb(255, 168, 137);
 }
 
+#cancel-button {
+    background-color: rgb(255, 247, 136);
+}
+
 .submenu-canvas {
     width: 30vw;
     height: 30vw;
@@ -104,7 +109,8 @@ input[type="color"] {
     gap: 1.5rem;
 }
 
-#slice-edit-form button {
+#slice-edit-form button,
+#slice-add-form button {
     flex: 1;
 }
 
