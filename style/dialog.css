@@ -72,7 +72,7 @@ input[type="color"] {
 #slice-add-submit-button,
 #slice-edit-submit-button,
 #slice-delete-submit-button,
-#cancel-button {
+.cancel-button {
     font-size: 1rem;
     padding: 0.5rem;
     border-radius: 0.75rem;
@@ -92,7 +92,7 @@ input[type="color"] {
     background-color: rgb(255, 168, 137);
 }
 
-#cancel-button {
+.cancel-button {
     background-color: rgb(255, 247, 136);
 }
 
