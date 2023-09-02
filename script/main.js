@@ -18,23 +18,17 @@ function resize_window() {
     canvas_container.style["width"] = "100%";
     
     const dimensions = getComputedStyle(canvas_container);
-    let anchor
+    let anchor = 0;
     const [width, height] = [dimensions.width, dimensions.height];
     if (parseInt(width) < parseInt(height)) {
         anchor = width;
-        // canvas_container.style["height"] = width;
-        // canvas_container.style.width    = width;
     } else {
         anchor = height;
-        // canvas_container.style.height   = height;
-        // canvas_container.style["width"] = height;
     }
     
     const main_canvas = document.querySelector("#main-canvas");
     main_canvas.style["width"] = anchor;
     main_canvas.style["height"] = anchor;
-    // main_canvas.style["width"] = "100%";
-    // main_canvas.style["height"] = "100%";
     render_main_canvas();
 }
 
