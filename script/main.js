@@ -5,7 +5,6 @@ window.addEventListener("DOMContentLoaded", () => {
     init_option_buttons();
     init_slice_add_form();
     init_slice_edit_form();
-    init_cancel_buttons();
 
     init_download_button();
     resize_window();
@@ -73,23 +72,6 @@ function click_option_button(event) {
     const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
     const slices = get_globals().slices;
     draw_clock_slices(draw_ctx, slices);
-}
-
-function init_cancel_buttons() {
-    const cancel_buttons = document.querySelectorAll(".cancel-button");
-
-    for (const cancel_button of cancel_buttons) {
-        let dialog_parent = cancel_button.parentElement;
-        while (dialog_parent !== null && dialog_parent.nodeName.toLowerCase() !== "dialog") {
-            dialog_parent = dialog_parent.parentElement;
-        }
-
-        cancel_button.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            dialog_parent.close();
-        });
-    }
 }
 
 function render_main_canvas() {

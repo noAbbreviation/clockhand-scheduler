@@ -26,6 +26,9 @@ function init_slice_edit_form() {
     const delete_button = form.querySelector("#slice-delete-submit-button");
     delete_button.form_context = form.context;
     delete_button.addEventListener("click", click_submit_slice_delete);
+
+    const cancel_button = form.querySelector(".cancel-button");
+    cancel_button.addEventListener("click", click_cancel_slice_edit);
 }
 
 function click_submit_slice_edit(event) {
@@ -63,6 +66,18 @@ function click_submit_slice_delete(event) {
     
     render_main_canvas();
 }
+
+function click_cancel_slice_edit(event) {
+    event.preventDefault();
+
+    if (!confirm("Are you sure you want to cancel changes?")) {
+        return;
+    }
+
+    const dialog = document.querySelector("dialog#slice-edit"); 
+    dialog.close();    
+}
+
 
 function create_slice_edit_options(slices) {
     const option = document.createElement("option");
