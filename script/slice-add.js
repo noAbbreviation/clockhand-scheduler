@@ -2,8 +2,12 @@ function init_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
     const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
     
+    const form_context = {};
+    const slice_info = {};
+
     form.draw_ctx = draw_ctx;
-    form.context = {};
+    form.context = form_context;
+    form.context.slice_info = slice_info;
     
     const form_inputs = form.querySelectorAll("input");
     for (const input of form_inputs) {
@@ -13,14 +17,14 @@ function init_slice_add_form() {
         input.addEventListener("focusout", () => {}); // TODO!
         
         input.draw_ctx = draw_ctx;
-        input.form_store = form.context;
-        form.context[input.id] = input.value; 
+        input.form_store = form_context;
+        slice_info[input.id] = input.value;
     }
-    form.context.selected = true;
+    slice_info.selected = true;
 
     const submit_button = document.querySelector("#slice-add-submit-button");
     submit_button.addEventListener("click", click_submit_slice_add);
-    submit_button.context = form.context;
+    submit_button.form_context = form_context;
 
     const cancel_button = form.querySelector(".cancel-button");
     cancel_button.addEventListener("click", click_cancel_slice_add);
@@ -31,7 +35,7 @@ function click_submit_slice_add(event) {
 
     const globals = get_globals();
     const slices = globals.slices;
-    const new_slice = {...event.target.context, selected: false};
+    const new_slice = {...event.target.form_context.slice_info, selected: false};
     slices.push(new_slice);
     slices.sort(compare_time_fn);
     
@@ -56,25 +60,25 @@ function input_change_slice_add(event) {
     const element = event.target;
     const new_value = element.value;
     const draw_ctx = element.draw_ctx;
-    const form_store = element.form_store;
+    const slice_info = element.form_store.slice_info;
     const slices = get_globals().slices;
 
-    form_store[element.id] = new_value;
-    form_store.selected = true;
+    slice_info[element.id] = new_value;
+    slice_info.selected = true;
 
     draw_clock_slices(draw_ctx, slices);
-    draw_with_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, slice_info);
 }
 
 function blur_slice_add(event) {
     const element = event.target;
     const draw_ctx = element.draw_ctx;
-    const form_store = element.form_store;
+    const slice_info = element.form_store.slice_info;
     const slices = get_globals().slices;
 
-    form_store.selected = false;
+    slice_info.selected = false;
     
-    draw_with_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, slice_info);
 }
 
 function get_time_array(time_str) {
