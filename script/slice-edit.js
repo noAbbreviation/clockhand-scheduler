@@ -9,7 +9,7 @@ function init_slice_edit_form() {
     edit_select.draw_ctx = draw_ctx;
     edit_select.form_store = form.context;
     edit_select.slice_index = -1;
-    edit_select.addEventListener("input", input_select_edit);
+    edit_select.addEventListener("input", input_slice_edit_select);
     
     const edit_inputs = form.querySelectorAll("input");
     for (const input of edit_inputs) {
@@ -99,7 +99,7 @@ function create_slice_edit_options(slices) {
     return options;
 }
 
-function input_select_edit(event) {
+function input_slice_edit_select(event) {
     const inputs_field = document.querySelector("#slice-edit #inputs-field");
     inputs_field.disabled = false;
     
