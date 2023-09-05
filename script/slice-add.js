@@ -28,6 +28,7 @@ function init_slice_add_form() {
     cancel_button.addEventListener("click", click_cancel_slice_add);
 
     for (const button of form.querySelectorAll("button")) {
+        button.draw_ctx = draw_ctx;
         button.form_store = form_context;
     }
 }
@@ -77,7 +78,6 @@ function focus_in_slice_add(event) {
     const element = event.target;
     const draw_ctx = element.draw_ctx;
     const slice_info = element.form_store.slice_info;
-    console.log(element.form_store);
 
     slice_info.selected = true;
     draw_with_new_slice(draw_ctx, slice_info);
@@ -89,7 +89,7 @@ function focus_out_slice_add(event) {
     const slice_info = element.form_store.slice_info;
 
     slice_info.selected = false;
-    draw_clock_slices(draw_ctx, [slice_info]);
+    draw_with_new_slice(draw_ctx, slice_info);
 }
 
 function get_time_array(time_str) {
