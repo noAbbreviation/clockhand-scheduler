@@ -26,19 +26,20 @@ function init_slice_add_form() {
     
     const cancel_button = form.querySelector(".cancel-button");
     cancel_button.addEventListener("click", click_cancel_slice_add);
-    
+
     for (const button of form.querySelectorAll("button")) {
-        button.form_context = form_context;
+        button.form_store = form_context;
     }
 }
 
 function click_submit_slice_add(event) {
     event.preventDefault();
 
-    const globals = get_globals();
-    const slices = globals.slices;
-    const new_slice = {...event.target.form_context.slice_info, selected: false};
-    slices.push(new_slice);
+    const slices = get_globals().slices;
+    const new_slice = event.target.form_store.slice_info;
+    new_slice.selected = false;
+
+    slices.push({...new_slice});
     slices.sort(compare_time_fn);
     
     const dialog = document.querySelector("dialog#slice-add"); 
@@ -73,13 +74,12 @@ function input_change_slice_add(event) {
 }
 
 function focus_in_slice_add(event) {
-    console.log(event);
     const element = event.target;
     const draw_ctx = element.draw_ctx;
     const slice_info = element.form_store.slice_info;
+    console.log(element.form_store);
 
     slice_info.selected = true;
-    
     draw_with_new_slice(draw_ctx, slice_info);
 }
 
@@ -89,7 +89,6 @@ function focus_out_slice_add(event) {
     const slice_info = element.form_store.slice_info;
 
     slice_info.selected = false;
-    
     draw_clock_slices(draw_ctx, [slice_info]);
 }
 
