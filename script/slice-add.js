@@ -23,10 +23,13 @@ function init_slice_add_form() {
 
     const submit_button = document.querySelector("#slice-add-submit-button");
     submit_button.addEventListener("click", click_submit_slice_add);
-    submit_button.form_context = form_context;
     
     const cancel_button = form.querySelector(".cancel-button");
     cancel_button.addEventListener("click", click_cancel_slice_add);
+    
+    for (const button of form.querySelectorAll("button")) {
+        button.form_context = form_context;
+    }
 }
 
 function click_submit_slice_add(event) {
