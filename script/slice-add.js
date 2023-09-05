@@ -179,3 +179,9 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag = false) {
         draw_clock_texts(draw_ctx);
     }
 }
+
+function reset_form(form_element) {
+    for (const input of form_element.querySelectorAll("input")) {
+        input.value = "";
+    }
+}

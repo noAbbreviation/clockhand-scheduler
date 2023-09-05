@@ -44,7 +44,7 @@ function get_globals() {
 }
 
 function init_option_buttons() {
-    const options = document.querySelectorAll(".sidebar ul button");
+    const options = document.querySelectorAll(".sidebar ul button:not(#download-canvas-button)");
     for (const option of options) {
         option.addEventListener("click", click_option_button);
     }
@@ -68,6 +68,9 @@ function click_option_button(event) {
     const dialog_id = canvas_names.join("-");
     const dialog = document.querySelector(`#${dialog_id}`);
     dialog.showModal();
+
+    const form = dialog.querySelector("form");
+    reset_form(form);
     
     const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
     const slices = get_globals().slices;
