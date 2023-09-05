@@ -1,6 +1,8 @@
 function init_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
     const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
+    form.addEventListener("focusin", focus_in_slice_add);
+    form.addEventListener("focusout", focus_out_slice_add);
     
     const form_context = {};
     const slice_info = {};
@@ -12,9 +14,6 @@ function init_slice_add_form() {
     const form_inputs = form.querySelectorAll("input");
     for (const input of form_inputs) {
         input.addEventListener("input", input_change_slice_add);
-        input.addEventListener("blur", blur_slice_add);
-        input.addEventListener("focusin", () => {}); // TODO!: Add triggers here (for selected)
-        input.addEventListener("focusout", () => {}); // TODO!
         
         input.draw_ctx = draw_ctx;
         input.form_store = form_context;
@@ -25,7 +24,7 @@ function init_slice_add_form() {
     const submit_button = document.querySelector("#slice-add-submit-button");
     submit_button.addEventListener("click", click_submit_slice_add);
     submit_button.form_context = form_context;
-
+    
     const cancel_button = form.querySelector(".cancel-button");
     cancel_button.addEventListener("click", click_cancel_slice_add);
 }
@@ -70,15 +69,25 @@ function input_change_slice_add(event) {
     draw_with_new_slice(draw_ctx, slice_info);
 }
 
-function blur_slice_add(event) {
+function focus_in_slice_add(event) {
+    console.log(event);
     const element = event.target;
     const draw_ctx = element.draw_ctx;
     const slice_info = element.form_store.slice_info;
-    const slices = get_globals().slices;
+
+    slice_info.selected = true;
+    
+    draw_with_new_slice(draw_ctx, slice_info);
+}
+
+function focus_out_slice_add(event) {
+    const element = event.target;
+    const draw_ctx = element.draw_ctx;
+    const slice_info = element.form_store.slice_info;
 
     slice_info.selected = false;
     
-    draw_with_new_slice(draw_ctx, slice_info);
+    draw_clock_slices(draw_ctx, [slice_info]);
 }
 
 function get_time_array(time_str) {
@@ -97,8 +106,8 @@ function get_angle_from_time(time) {
     return get_angle_on_hour(hour) + get_angle_on_minute(minute);
 }
 
-function draw_with_new_slice(draw_ctx, form_store) {
-    if (form_store.time_start === "" || form_store.time_end === "" || form_store.slice_color === "") {
+function draw_with_new_slice(draw_ctx, slice_info) {
+    if (slice_info.time_start === "" || slice_info.time_end === "" || slice_info.slice_color === "") {
         return;
     }
     const globals = get_globals();
@@ -106,18 +115,18 @@ function draw_with_new_slice(draw_ctx, form_store) {
     const clock_style = globals.clock_circle_style;
     const slice_style = globals.clock_slices_style;
     
-    const start_angle = get_angle_from_time(form_store.time_start);
-    const end_angle = get_angle_from_time(form_store.time_end);
+    const start_angle = get_angle_from_time(slice_info.time_start);
+    const end_angle = get_angle_from_time(slice_info.time_end);
 
     const colored_inner_stroke = {
         ...slice_style.inner_stroke,
-        strokeStyle: color_to_transparent(form_store.slice_color, 0.1),
+        strokeStyle: color_to_transparent(slice_info.slice_color, 0.1),
     };
 
     const outer_stroke = {...defaults, ...slice_style.outer_stroke};
     outer_stroke.fillStyle = lerp_colors(colored_inner_stroke.strokeStyle, base_color);
 
-    if (form_store.selected) {
+    if (slice_info.selected) {
         outer_stroke.fillStyle = color_to_transparent(outer_stroke.fillStyle);
         outer_stroke.strokeStyle = color_to_transparent(outer_stroke.strokeStyle);
     }
@@ -147,9 +156,10 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag = false) {
     for (const slice of slices) {
         const start_angle = get_angle_from_time(slice.time_start);
         const end_angle = get_angle_from_time(slice.time_end);
-        const lerped_color = lerp_colors(slice.slice_color, base_color);
-
+        
         if (!slice.selected) {
+            const lerped_color = lerp_colors(slice.slice_color, base_color);
+            
             draw_circle_slice(
                 draw_ctx,
                 global.center,
