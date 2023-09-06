@@ -6,6 +6,7 @@ function init_slice_edit_form() {
     const slice_info = {};
     form_context.slice_info = slice_info;
 
+    clear_form(form);
     form.draw_ctx = draw_ctx;
     form.context = form_context;
 
@@ -138,9 +139,10 @@ function input_slice_edit_select(event) {
         
     } else if (slice_index !== -1) {
         slices[slice_index].selected = false;
-
+        
         inputs_field.disabled = true;
-        // todo: add reset here too?
+        const form = document.querySelector("#slice-edit-form");
+        clear_form(form);
     }
     
     const current_slice = slices[slice_index];
@@ -161,4 +163,12 @@ function input_slice_edit(event) {
 
     const draw_ctx = element.draw_ctx;    
     draw_with_new_slice(draw_ctx, slice_info);
+}
+
+function clear_form(form_element) {
+    for (const input of form_element.querySelectorAll("input:not([type='color'])")) {
+        input.value = "";
+    }
+    const color_form = form_element.querySelector("input[type='color']");
+    color_form.value = default_slice.slice_color;
 }

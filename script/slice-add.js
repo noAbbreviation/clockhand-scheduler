@@ -1,6 +1,8 @@
 function init_slice_add_form() {
     const form = document.querySelector(".popups #slice-add-form");
     const draw_ctx = document.querySelector("#slice-add #submenu-canvas").getContext("2d");
+    
+    reset_form(form);
     form.addEventListener("focusin", focus_in_slice_add);
     form.addEventListener("focusout", focus_out_slice_add);
     
@@ -65,12 +67,10 @@ function input_change_slice_add(event) {
     const new_value = element.value;
     const draw_ctx = element.draw_ctx;
     const slice_info = element.form_store.slice_info;
-    const slices = get_globals().slices;
 
     slice_info[element.id] = new_value;
     slice_info.selected = true;
 
-    draw_clock_slices(draw_ctx, slices);
     draw_with_new_slice(draw_ctx, slice_info);
 }
 
@@ -183,7 +183,7 @@ function draw_clock_slices(draw_ctx, slices, remove_text_flag = false) {
 function reset_form(form_element) {
     for (const prop in default_slice) {
         const input = form_element.querySelector(`#${prop}`);
-        if (input === null) continue; 
+        if (input === null) continue;
 
         input.value = default_slice[prop];
     }

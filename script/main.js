@@ -49,6 +49,12 @@ function init_option_buttons() {
         option.addEventListener("click", click_option_button);
     }
 
+    const slice_add = document.querySelector("#slice-add-button");
+    slice_add.addEventListener("click", () => {
+        const slice_add_form = document.querySelector("#slice-add-form");
+        reset_form(slice_add_form);
+    });
+    
     const slice_edit = document.querySelector("#slice-edit-button");
     slice_edit.addEventListener("click", () => {
         const select = document.querySelector("#slice-to-edit");
@@ -58,6 +64,9 @@ function init_option_buttons() {
         for (const option of options) {
             select.appendChild(option);
         }
+
+        const slice_edit_form = document.querySelector("#slice-edit-form");
+        clear_form(slice_edit_form);
     });
 }
 
@@ -68,9 +77,6 @@ function click_option_button(event) {
     const dialog_id = canvas_names.join("-");
     const dialog = document.querySelector(`#${dialog_id}`);
     dialog.showModal();
-
-    const form = dialog.querySelector("form");
-    reset_form(form);
     
     const draw_ctx = dialog.querySelector(`#submenu-canvas`).getContext("2d");
     const slices = get_globals().slices;
