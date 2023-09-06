@@ -17,6 +17,11 @@ const defaults = {
 }
 
 const base_color = "rgb(255,255,255)";
+const default_slice = {
+    time_start: "12:00",
+    time_end: "15:00",
+    slice_color: "#17a2da",
+};
 
 function apply_with_defaults(draw_ctx, style) {
     for (const prop in defaults) {
