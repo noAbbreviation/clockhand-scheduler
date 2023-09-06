@@ -110,7 +110,7 @@ function get_angle_from_time(time) {
 
 function draw_with_new_slice(draw_ctx, slice_info) {
     if (slice_info.time_start == null || slice_info.time_end == null || slice_info.slice_color == null) {
-        return
+        return;
     }
     if (slice_info.time_start === "" || slice_info.time_end === "" || slice_info.slice_color === "") {
         return;
