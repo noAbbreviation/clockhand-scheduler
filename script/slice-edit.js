@@ -81,7 +81,8 @@ function click_submit_slice_delete(event) {
 function click_cancel_slice_edit(event) {
     event.preventDefault();
 
-    if (!confirm("Are you sure you want to cancel changes?")) {
+    const slices = get_globals().slices;
+    if (slices.length !== 0 && !confirm("Are you sure you want to cancel changes?")) {
         return;
     }
 
