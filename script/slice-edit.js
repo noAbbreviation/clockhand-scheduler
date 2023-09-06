@@ -5,10 +5,12 @@ function init_slice_edit_form() {
     const form_context = {};
     const slice_info = {};
     form_context.slice_info = slice_info;
-
-    clear_form(form);
     form.draw_ctx = draw_ctx;
     form.context = form_context;
+
+    clear_form(form);
+    form.addEventListener("focusin", focus_in_slice_edit);
+    form.addEventListener("focusout", focus_out_slice_edit);
 
     const edit_select = form.querySelector("select");
     edit_select.draw_ctx = draw_ctx;
@@ -25,15 +27,18 @@ function init_slice_edit_form() {
     }
 
     const submit_button = form.querySelector("#slice-edit-submit-button");
-    submit_button.form_context = form_context;
     submit_button.addEventListener("click", click_submit_slice_edit);
 
     const delete_button = form.querySelector("#slice-delete-submit-button");
-    delete_button.form_context = form_context;
     delete_button.addEventListener("click", click_submit_slice_delete);
 
     const cancel_button = form.querySelector(".cancel-button");
     cancel_button.addEventListener("click", click_cancel_slice_edit);
+
+    for (const button of form.querySelectorAll("button")) {
+        button.draw_ctx = draw_ctx;
+        button.form_context = form_context;
+    }
 }
 
 function click_submit_slice_edit(event) {
@@ -103,6 +108,24 @@ function create_slice_edit_options(slices) {
         options.push(new_option);
     }
     return options;
+}
+
+function focus_in_slice_edit(event) {
+    const element = event.target;
+    const draw_ctx = element.draw_ctx;
+    const slice_info = element.form_context.slice_info;
+    
+    slice_info.selected = true;
+    draw_with_new_slice(draw_ctx, slice_info);
+}
+
+function focus_out_slice_edit(event) {
+    const element = event.target;
+    const draw_ctx = element.draw_ctx;
+    const slice_info = element.form_context.slice_info;
+
+    slice_info.selected = false;
+    draw_with_new_slice(draw_ctx, slice_info);
 }
 
 function input_slice_edit_select(event) {
