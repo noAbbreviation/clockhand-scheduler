@@ -39,13 +39,14 @@ function click_submit_slice_edit(event) {
     event.preventDefault();
 
     const element = event.target;
-    const edited_slice = {...element.form_context.slice_info, selected: false};
+    const edited_slice = element.form_context.slice_info;
     const slice_index = document.querySelector("#slice-to-edit").value;
 
     const old_slice = get_globals().slices[slice_index];
     for (const prop in edited_slice) {
         old_slice[prop] = edited_slice[prop];
     }
+    old_slice.selected = false;
     get_globals().slices.sort(compare_time_fn);
 
     const dialog = document.querySelector("dialog#slice-edit"); 
