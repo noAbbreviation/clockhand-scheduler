@@ -2,29 +2,33 @@ function init_slice_edit_form() {
     const form = document.querySelector("#slice-edit-form");
     const draw_ctx = document.querySelector("#slice-edit #submenu-canvas").getContext("2d");
     
+    const form_context = {};
+    const slice_info = {};
+    form_context.slice_info = slice_info;
+
     form.draw_ctx = draw_ctx;
-    form.context = {};
+    form.context = form_context;
 
     const edit_select = form.querySelector("select");
     edit_select.draw_ctx = draw_ctx;
-    edit_select.form_store = form.context;
-    edit_select.slice_index = -1;
+    edit_select.form_context = form_context;
     edit_select.addEventListener("input", input_slice_edit_select);
+    form_context.slice_index = -1;
     
     const edit_inputs = form.querySelectorAll("input");
     for (const input of edit_inputs) {
         input.addEventListener("input", input_slice_edit);
 
         input.draw_ctx = draw_ctx;
-        input.form_store = form.context;
+        input.form_context = form_context;
     }
 
     const submit_button = form.querySelector("#slice-edit-submit-button");
-    submit_button.form_context = form.context;
+    submit_button.form_context = form_context;
     submit_button.addEventListener("click", click_submit_slice_edit);
 
     const delete_button = form.querySelector("#slice-delete-submit-button");
-    delete_button.form_context = form.context;
+    delete_button.form_context = form_context;
     delete_button.addEventListener("click", click_submit_slice_delete);
 
     const cancel_button = form.querySelector(".cancel-button");
@@ -35,7 +39,7 @@ function click_submit_slice_edit(event) {
     event.preventDefault();
 
     const element = event.target;
-    const edited_slice = {...element.form_context, selected: false};
+    const edited_slice = {...element.form_context.slice_info, selected: false};
     const slice_index = document.querySelector("#slice-to-edit").value;
 
     const old_slice = get_globals().slices[slice_index];
@@ -108,17 +112,17 @@ function input_slice_edit_select(event) {
     
     const slices = get_globals().slices;
     const selected_value = element.value;
-    let slice_index = element.slice_index;
+
+    let slice_index = element.form_context.slice_index;
     
     if (selected_value !== "") {
-        if (element.slice_index !== -1) {
+        if (slice_index !== -1) {
             slices[slice_index].selected = false;
         }
+        slice_index = selected_value;
+        slices[slice_index].selected = true;
 
-        element.slice_index = selected_value;
-        slices[element.slice_index].selected = true;
-
-        const slice = slices[element.slice_index];
+        const slice = slices[slice_index];
         const form = document.querySelector("#slice-edit-form");
         for (const prop in slice) {
             const input = form.querySelector(`input[id="${prop}"]`);
@@ -129,6 +133,7 @@ function input_slice_edit_select(event) {
         }
         const slice_color_input = form.querySelector('input[id="slice_color"]');
         slice_color_input.value = rgb_to_hex(slice.slice_color);
+        element.form_context.slice_index = selected_value;
         
     } else if (slice_index !== -1) {
         slices[slice_index].selected = false;
@@ -137,22 +142,22 @@ function input_slice_edit_select(event) {
         // todo: add reset here too?
     }
     
-    const current_slice = slices[element.slice_index];
-    const form_store = element.form_store;
+    const current_slice = slices[slice_index];
+    const slice_info = element.form_context.slice_info;
     for (const prop in current_slice) {
-        form_store[prop] = current_slice[prop]; 
+        slice_info[prop] = current_slice[prop];
     }
 
-    draw_with_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, slice_info);
 }
 
 function input_slice_edit(event) {
     const element = event.target;
     const new_value = element.value;
 
-    const form_store = element.form_store;
-    form_store[element.id] = new_value;
+    const slice_info = element.form_context.slice_info;
+    slice_info[element.id] = new_value;
 
     const draw_ctx = element.draw_ctx;    
-    draw_with_new_slice(draw_ctx, form_store);
+    draw_with_new_slice(draw_ctx, slice_info);
 }
